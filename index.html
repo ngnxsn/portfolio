@@ -1,0 +1,919 @@
+<!doctype html>
+<html lang="vi" class="" style=""><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nguyễn Sơn — Visual Designer &amp; Video Marketer</title>
+<meta name="description" content="Nguyễn Sơn — Visual Designer &amp; Video Marketer. Thiết kế quảng cáo, quay dựng video, sáng tạo nội dung và AI cho marketing.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700;800&amp;family=Instrument+Serif:ital@0;1&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<style>
+/* ============= TOKENS ============= */
+:root{
+  --brand-50:#FDF4EE;--brand-100:#FAE4D2;--brand-300:#EDA470;--brand-400:#E3814A;
+  --brand-500:#D97757;--brand-600:#C25E3E;--brand-700:#9F4A30;
+  --cream-50:#FBF9F5;--cream-100:#F5F1E8;--cream-200:#E9E2D2;
+  --stone-300:#C9BFA9;--stone-400:#9E9480;--stone-500:#6F6756;
+  --stone-600:#524B3D;--stone-700:#3A342A;--stone-800:#25211A;--stone-900:#14110C;
+  --mustard:#EEE84A;--mustard-deep:#DED613;
+  --ink:var(--stone-900);--paper:var(--cream-50);--paper-warm:#F5EEDE;
+  --rule:rgba(20,17,12,0.10);--rule-soft:rgba(20,17,12,0.06);
+  --coral:var(--brand-500);
+  --font-sans:"Be Vietnam Pro",ui-sans-serif,system-ui,sans-serif;
+  --font-serif:"Instrument Serif",Georgia,serif;
+  --font-mono:"JetBrains Mono",ui-monospace,Menlo,monospace;
+  --ease-out:cubic-bezier(0.22,1,0.36,1);
+  --page-max:1280px;
+}
+
+/* ============= BASE ============= */
+*,*::before,*::after{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{
+  background:var(--paper);color:var(--ink);
+  font-family:var(--font-sans);font-size:16px;line-height:1.6;
+  -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+  overflow-x:hidden;
+}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+button{font:inherit;cursor:pointer}
+
+.container{width:100%;max-width:var(--page-max);margin:0 auto;padding:0 32px;position:relative}
+
+/* ============= NAV ============= */
+.nav{position:sticky;top:0;z-index:50;background:rgba(251,249,245,0.82);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--rule-soft)}
+.nav-inner{height:72px;display:flex;align-items:center;gap:28px}
+.brand{display:flex;align-items:center;gap:10px;font-weight:700;letter-spacing:-0.01em;font-size:16px}
+.brand-mark{width:30px;height:30px;border-radius:8px;background:var(--ink);color:var(--mustard);display:grid;place-items:center;font-family:var(--font-mono);font-weight:700;font-size:15px}
+.brand-meta{font-family:var(--font-mono);font-size:11px;letter-spacing:0.14em;color:var(--stone-500);text-transform:uppercase;padding-left:14px;margin-left:4px;border-left:1px solid var(--cream-200)}
+.nav-links{display:flex;gap:28px;margin-left:auto;font-size:14.5px;font-weight:500}
+.nav-links a{color:var(--stone-700);transition:color .2s}
+.nav-links a:hover{color:var(--ink)}
+.nav-phone{display:inline-flex;align-items:center;gap:8px;padding:9px 14px;border-radius:999px;border:1px solid var(--rule);background:#fff;font-family:var(--font-mono);font-size:12.5px;color:var(--stone-700)}
+.nav-phone::before{content:"";width:7px;height:7px;border-radius:50%;background:#3FB46B;box-shadow:0 0 0 3px rgba(63,180,107,0.16)}
+.nav-cta{display:inline-flex;align-items:center;gap:10px;padding:10px 10px 10px 18px;border-radius:999px;background:var(--ink);color:var(--paper);font-weight:500;font-size:14px;transition:background .2s,transform .2s}
+.nav-cta:hover{background:var(--coral);transform:translateY(-1px)}
+.nav-cta .dot{width:24px;height:24px;border-radius:50%;background:var(--mustard);color:var(--ink);display:grid;place-items:center;font-size:11px}
+.nav-toggle{display:none;border:1px solid var(--rule);background:#fff;border-radius:10px;padding:10px;margin-left:auto}
+.nav-toggle span{display:block;width:20px;height:2px;background:var(--ink);margin:4px 0}
+
+/* ============= HERO ============= */
+.hero{padding:56px 0 96px;position:relative}
+.hero-grid{display:grid;grid-template-columns:1.2fr 1fr;gap:56px;align-items:start}
+.eyebrow{display:flex;align-items:center;gap:12px;font-family:var(--font-mono);font-size:11.5px;letter-spacing:0.16em;text-transform:uppercase;color:var(--stone-600);margin-bottom:28px}
+.eyebrow::before{content:"";width:30px;height:1px;background:var(--coral)}
+.eyebrow .live{display:inline-flex;align-items:center;gap:6px;color:var(--stone-600)}
+.eyebrow .live::before{content:"";width:7px;height:7px;border-radius:50%;background:#3FB46B;animation:pulse 2s ease-in-out infinite}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 3px rgba(63,180,107,0.18)}50%{box-shadow:0 0 0 6px rgba(63,180,107,0.06)}}
+
+.headline{
+  font-family:var(--font-sans);font-weight:700;
+  font-size:clamp(48px,7vw,104px);line-height:0.96;letter-spacing:-0.035em;
+  color:var(--ink);margin:0;
+}
+.headline .serif{font-family:var(--font-serif);font-style:italic;font-weight:400;color:var(--stone-700);letter-spacing:-0.02em}
+.headline .hl{position:relative;display:inline-block;padding:0 12px 2px;background:var(--mustard);transform:rotate(-1.5deg);margin:0 3px}
+.headline .coral{color:var(--coral)}
+.headline .under{background:linear-gradient(180deg,transparent 70%,var(--mustard) 70%);padding:0 4px}
+
+.hero-lead{margin-top:36px;font-size:17.5px;line-height:1.55;color:var(--stone-700);max-width:560px}
+.hero-lead b{color:var(--ink);font-weight:600}
+
+.hero-chips{margin-top:28px;display:flex;flex-wrap:wrap;gap:8px}
+.chip{font-family:var(--font-mono);font-size:11px;letter-spacing:0.08em;text-transform:uppercase;padding:8px 14px;border:1px solid var(--rule);border-radius:999px;color:var(--stone-700);background:rgba(255,255,255,0.5);display:inline-flex;align-items:center;gap:8px}
+.chip::before{content:"";width:5px;height:5px;border-radius:50%;background:var(--coral)}
+
+.actions{margin-top:36px;display:flex;flex-wrap:wrap;gap:14px;align-items:center}
+.btn{display:inline-flex;align-items:center;gap:10px;border-radius:999px;font-weight:500;font-size:14.5px;transition:all .25s var(--ease-out);border:1px solid transparent}
+.btn-primary{background:var(--ink);color:var(--paper);padding:8px 8px 8px 22px;border-color:var(--ink)}
+.btn-primary:hover{background:var(--coral);border-color:var(--coral)}
+.btn-primary .arr{width:34px;height:34px;border-radius:50%;background:var(--mustard);color:var(--ink);display:grid;place-items:center;transition:transform .25s}
+.btn-primary:hover .arr{transform:rotate(-45deg)}
+.btn-ghost{padding:14px 2px;color:var(--stone-800);border-bottom:1px solid var(--ink);border-radius:0;transition:gap .2s,color .2s,border-color .2s}
+.btn-ghost:hover{color:var(--coral);gap:14px;border-color:var(--coral)}
+.btn-ghost .num{font-family:var(--font-mono);font-size:10.5px;color:var(--stone-500);margin-left:4px;letter-spacing:0.1em}
+
+.trust{margin-top:44px;display:flex;align-items:center;gap:18px}
+.avatars{display:flex}
+.avatars .av{width:36px;height:36px;border-radius:50%;border:2px solid var(--paper);margin-left:-10px;display:grid;place-items:center;font-size:11px;font-weight:700;color:#fff}
+.avatars .av:first-child{margin-left:0}
+.av.c1{background:var(--coral)}.av.c2{background:var(--stone-800)}.av.c3{background:var(--mustard);color:var(--ink)}.av.c4{background:#8BA674}.av.c5{background:#D4A84B}
+.trust-text{font-size:13.5px;line-height:1.4}
+.trust-text b{color:var(--ink);font-weight:600}
+.trust-text span{display:block;font-family:var(--font-mono);font-size:11px;color:var(--stone-500);letter-spacing:0.08em;text-transform:uppercase;margin-top:2px}
+.stars{color:var(--coral);letter-spacing:2px;font-size:12px;margin-right:6px}
+
+/* Hero visual */
+.hero-visual{position:relative;padding-top:0;min-height:560px}
+.card-big{background:#fff;border:1px solid var(--rule);border-radius:22px;padding:22px 24px;box-shadow:0 22px 50px -14px rgba(37,33,26,0.14)}
+.card-big .row{font-family:var(--font-mono);font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--stone-500);display:flex;justify-content:space-between;align-items:center}
+.card-big .row b{color:var(--ink);font-weight:600}
+.big-num{font-size:clamp(68px,7.8vw,100px);font-weight:700;line-height:0.98;letter-spacing:-0.045em;color:var(--ink);margin:10px 0 2px}
+.big-num .plus{color:var(--coral)}
+.big-cap{font-size:14px;color:var(--stone-600);margin-bottom:14px}
+.spark{width:100%;height:76px;display:block}
+.spark-labels{display:flex;justify-content:space-between;font-family:var(--font-mono);font-size:10px;letter-spacing:0.1em;color:var(--stone-500);text-transform:uppercase;margin-top:8px}
+
+.stat-strip{margin-top:14px;background:var(--ink);color:var(--paper);border-radius:16px;padding:18px 22px;display:grid;grid-template-columns:repeat(3,1fr);gap:2px}
+.stat-strip .i{padding-right:16px}
+.stat-strip .i+.i{padding-left:18px;border-left:1px solid rgba(255,255,255,0.12)}
+.stat-strip small{font-family:var(--font-mono);font-size:10px;letter-spacing:0.12em;color:var(--stone-400);text-transform:uppercase;display:block;margin-bottom:4px}
+.stat-strip b{font-size:20px;font-weight:600;letter-spacing:-0.01em;color:var(--paper)}
+
+.tilt-card{margin-top:18px;background:var(--mustard);border-radius:16px;padding:20px 24px 22px;transform:rotate(-2.5deg) translateX(-16px);max-width:240px;box-shadow:0 14px 30px rgba(200,190,10,0.25)}
+.tilt-card .lab{font-family:var(--font-mono);font-size:10px;letter-spacing:0.14em;text-transform:uppercase;color:var(--stone-800);opacity:0.75}
+.tilt-card .big{font-size:52px;font-weight:700;line-height:1;letter-spacing:-0.04em;color:var(--ink);margin:6px 0 4px}
+.tilt-card .sub{font-family:var(--font-mono);font-size:10px;letter-spacing:0.1em;color:var(--stone-700);text-transform:uppercase}
+
+.portrait-tile{position:absolute;right:-24px;top:250px;width:240px;transform:rotate(3.2deg);z-index:3}
+.portrait-tile .inner{background:#fff;border:1px solid var(--rule);border-radius:18px;padding:10px;box-shadow:0 22px 44px rgba(37,33,26,0.16)}
+.portrait-tile .img{width:100%;aspect-ratio:1/1.12;border-radius:12px;background:linear-gradient(145deg,#E9D9C1,#C9A883);position:relative;overflow:hidden;display:grid;place-items:center;color:var(--stone-800);font-family:var(--font-serif);font-size:84px;letter-spacing:-0.04em;line-height:1}
+.portrait-tile .img img{width:100%;height:100%;object-fit:cover}
+.portrait-tile .label{margin-top:10px;display:flex;justify-content:space-between;align-items:center;font-family:var(--font-mono);font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:var(--stone-500)}
+.portrait-tile .label b{color:var(--ink);font-weight:600}
+
+.sticker{position:absolute;left:-44px;top:288px;bottom:auto;z-index:4;width:108px;height:108px;border-radius:50%;background:var(--coral);color:#fff;display:grid;place-items:center;text-align:center;font-family:var(--font-mono);font-size:10px;letter-spacing:0.14em;text-transform:uppercase;line-height:1.35;padding:16px;box-shadow:0 18px 32px rgba(217,119,87,0.4);animation:spin 22s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* ============= MARQUEE ============= */
+.marquee-sec{border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);padding:26px 0;overflow:hidden;background:#FAF6EC}
+.marquee{display:flex;gap:40px;animation:scroll 32s linear infinite;white-space:nowrap;align-items:center;width:max-content}
+.marquee .w{font-size:28px;font-weight:600;letter-spacing:-0.02em;color:var(--stone-800);display:inline-flex;align-items:center;gap:40px}
+.marquee .w.muted{color:var(--stone-400);font-family:var(--font-serif);font-style:italic;font-weight:400;font-size:32px}
+.marquee .dia{width:10px;height:10px;background:var(--coral);transform:rotate(45deg);display:inline-block;flex-shrink:0}
+@keyframes scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* ============= SECTIONS ============= */
+.section{padding:120px 0;position:relative}
+.section-head{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:end;margin-bottom:60px}
+.section-head.single{grid-template-columns:1fr}
+.section-head h2{font-size:clamp(40px,5vw,68px);font-weight:700;line-height:1;letter-spacing:-0.035em;color:var(--ink);margin:0}
+.section-head h2 .serif{font-family:var(--font-serif);font-style:italic;font-weight:400;color:var(--stone-700);letter-spacing:-0.02em}
+.section-head h2 .coral{color:var(--coral)}
+.section-head h2 .hl{background:var(--mustard);padding:0 10px 2px;display:inline-block;transform:rotate(-1.2deg);margin:0 2px}
+.section-head .side{font-size:16px;line-height:1.55;color:var(--stone-700);max-width:440px;padding-bottom:6px}
+.section-head .side .mini{font-family:var(--font-mono);font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:var(--stone-500);display:block;margin-bottom:10px}
+
+/* ABOUT */
+.about-grid{display:grid;grid-template-columns:1.45fr 1fr;gap:28px}
+.about-card{background:#fff;border:1px solid var(--rule);border-radius:24px;padding:44px}
+.about-card p{font-size:18px;line-height:1.6;color:var(--stone-800);margin:0 0 18px}
+.about-card p:last-child{margin-bottom:0}
+.about-card .pill{display:inline-block;background:var(--mustard);padding:0 6px;border-radius:3px;font-weight:600;color:var(--ink)}
+
+.touch-card{background:var(--ink);color:var(--paper);border-radius:24px;padding:36px;display:flex;flex-direction:column;position:relative;overflow:hidden}
+.touch-card::before{content:"";position:absolute;top:-60px;right:-60px;width:200px;height:200px;border-radius:50%;background:radial-gradient(circle,rgba(217,119,87,0.25),transparent 70%)}
+.touch-card h3{font-size:13px;font-family:var(--font-mono);letter-spacing:0.14em;text-transform:uppercase;color:var(--stone-400);font-weight:500;margin:0 0 28px;position:relative}
+.touch-link{display:flex;align-items:center;justify-content:space-between;padding:16px 0;border-top:1px solid rgba(255,255,255,0.1);font-size:15.5px;font-weight:500;color:var(--paper);transition:padding .25s var(--ease-out),color .25s}
+.touch-link:hover{color:var(--mustard);padding-left:8px}
+.touch-link:last-of-type{border-bottom:1px solid rgba(255,255,255,0.1)}
+.touch-link .lead{display:flex;flex-direction:column;gap:2px}
+.touch-link .lead small{font-family:var(--font-mono);font-size:10.5px;letter-spacing:0.12em;text-transform:uppercase;color:var(--stone-500)}
+.touch-link .arr{width:32px;height:32px;border-radius:50%;background:rgba(255,255,255,0.08);display:grid;place-items:center;font-size:14px;transition:background .25s,transform .25s,color .25s}
+.touch-link:hover .arr{background:var(--mustard);color:var(--ink);transform:rotate(-45deg)}
+.touch-note{margin-top:auto;padding-top:24px;font-family:var(--font-mono);font-size:11px;letter-spacing:0.1em;line-height:1.6;color:var(--stone-400);text-transform:uppercase}
+
+/* STRENGTH */
+.strength-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.str-card{background:#fff;border:1px solid var(--rule);border-radius:24px;padding:34px 32px 32px;transition:transform .3s var(--ease-out),border-color .3s;position:relative;overflow:hidden}
+.str-card:hover{transform:translateY(-4px);border-color:var(--ink)}
+.str-card .num{font-family:var(--font-mono);font-size:12px;letter-spacing:0.14em;color:var(--stone-500);display:flex;align-items:center;gap:12px;margin-bottom:28px}
+.str-card .num::after{content:"";flex:1;height:1px;background:var(--rule)}
+.str-card .ico{width:52px;height:52px;border-radius:14px;background:var(--mustard);display:grid;place-items:center;transition:background .3s,transform .3s;margin-bottom:24px}
+.str-card:hover .ico{background:var(--coral)}
+.str-card:hover .ico svg{stroke:#fff}
+.str-card .ico svg{width:26px;height:26px;stroke:var(--ink);stroke-width:1.8;fill:none;stroke-linecap:round;stroke-linejoin:round;transition:stroke .3s}
+.str-card h3{font-size:26px;font-weight:600;letter-spacing:-0.025em;line-height:1.15;margin:0 0 14px;color:var(--ink)}
+.str-card p{font-size:15px;line-height:1.6;color:var(--stone-700);margin:0}
+.str-card ul{margin:18px 0 0;padding:0;list-style:none}
+.str-card ul li{font-family:var(--font-mono);font-size:11.5px;letter-spacing:0.04em;color:var(--stone-600);padding:6px 0;border-top:1px dashed var(--rule);display:flex;justify-content:space-between}
+.str-card ul li span{color:var(--stone-500)}
+
+/* PROJECTS */
+.projects-sec{padding:120px 0;background:var(--ink);color:var(--paper)}
+.projects-sec .section-head h2{color:var(--paper)}
+.projects-sec .section-head h2 .serif{color:var(--stone-400)}
+.projects-sec .section-head .side{color:var(--stone-400)}
+.projects-sec .eyebrow{color:var(--stone-400)}
+.projects-sec .eyebrow::before{background:var(--coral)}
+.rail{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(340px,1fr);gap:18px;overflow-x:auto;padding-bottom:16px;scroll-snap-type:x mandatory;scrollbar-width:thin}
+.rail::-webkit-scrollbar{height:6px}
+.rail::-webkit-scrollbar-track{background:rgba(255,255,255,0.05)}
+.rail::-webkit-scrollbar-thumb{background:rgba(255,255,255,0.2);border-radius:3px}
+.p-card{background:var(--stone-800);border-radius:20px;overflow:hidden;scroll-snap-align:start;transition:transform .3s var(--ease-out);display:flex;flex-direction:column}
+.p-card:hover{transform:translateY(-5px)}
+.p-card .thumb{aspect-ratio:4/3;position:relative;overflow:hidden;background:#1A1713}
+.p-card .thumb .art{position:absolute;inset:0;display:grid;place-items:center;font-family:var(--font-serif);font-style:italic;font-size:74px;letter-spacing:-0.04em;color:var(--paper);opacity:0.92}
+.p-card .thumb.a1{background:linear-gradient(135deg,#D97757 0%,#8F3E28 100%)}
+.p-card .thumb.a2{background:linear-gradient(135deg,#25211A 0%,#524B3D 100%)}
+.p-card .thumb.a3{background:linear-gradient(135deg,#EEE84A 0%,#D4A84B 100%)}
+.p-card .thumb.a3 .art{color:var(--ink)}
+.p-card .thumb.a4{background:linear-gradient(135deg,#6F6756 0%,#14110C 100%)}
+.p-card .thumb.a5{background:linear-gradient(135deg,#FAE4D2 0%,#E3814A 100%)}
+.p-card .thumb.a5 .art{color:var(--ink)}
+.p-card .thumb::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 55%,rgba(0,0,0,0.45))}
+.p-card .tag{position:absolute;left:16px;top:16px;z-index:2;font-family:var(--font-mono);font-size:10.5px;letter-spacing:0.12em;text-transform:uppercase;color:var(--paper);background:rgba(0,0,0,0.4);backdrop-filter:blur(8px);padding:7px 12px;border-radius:999px;border:1px solid rgba(255,255,255,0.1)}
+.p-card .play{position:absolute;right:16px;top:16px;z-index:2;width:38px;height:38px;border-radius:50%;background:var(--mustard);color:var(--ink);display:grid;place-items:center;font-size:13px}
+.p-card .body{padding:22px 24px;display:flex;justify-content:space-between;align-items:flex-start;gap:14px}
+.p-card .body h4{font-size:18px;font-weight:600;letter-spacing:-0.015em;margin:0 0 4px;color:var(--paper)}
+.p-card .body p{font-size:13px;color:var(--stone-400);margin:0}
+.p-card .body .arr{width:34px;height:34px;border-radius:50%;background:rgba(255,255,255,0.08);display:grid;place-items:center;transition:background .25s,transform .25s,color .25s;flex-shrink:0;font-size:14px}
+.p-card:hover .arr{background:var(--mustard);color:var(--ink);transform:rotate(-45deg)}
+.p-card .thumb img,.p-card .thumb iframe,.p-card .thumb video{position:absolute;inset:0;width:100%;height:100%;z-index:1;border:0;background:#0a0907}
+.p-card .thumb img{object-fit:cover;transition:transform .5s var(--ease-out)}
+.p-card:hover .thumb img{transform:scale(1.04)}
+.p-card .thumb img:not([src]),.p-card .thumb img[src=""]{display:none}
+/* Video cards giữ aspect 4:3 như card hình để cân đối với card Behance. */
+.p-card .thumb:has(iframe) .play,.p-card .thumb:has(video) .play{display:none}
+.p-card .thumb:has(iframe)::after,.p-card .thumb:has(video)::after{display:none}
+/* Card with video: outer <a> không navigate (iframe handle click play) — chỉ áp dụng trên live site. */
+.p-card:has(.thumb iframe),.p-card:has(.thumb video){pointer-events:none}
+.p-card:has(.thumb iframe) .thumb,.p-card:has(.thumb iframe) .body,
+.p-card:has(.thumb video) .thumb,.p-card:has(.thumb video) .body{pointer-events:auto}
+/* Editor mode: vẫn cho click để select element bình thường. */
+html.__ed-mode .p-card,html.__ed-mode .p-card *{pointer-events:auto !important}
+.p-card .thumb-empty{display:none;position:absolute;inset:0;place-items:center;color:var(--stone-500);font-family:var(--font-mono);font-size:11px;letter-spacing:0.16em;text-transform:uppercase;text-align:center;line-height:1.6;padding:18px;z-index:1}
+html.__ed-mode .p-card .thumb img:not([src])+.thumb-empty,
+html.__ed-mode .p-card .thumb img[src=""]+.thumb-empty{display:grid}
+.rail{align-items:start}
+.rail-progress{margin-top:24px;height:4px;background:rgba(255,255,255,0.08);border-radius:3px;overflow:hidden;position:relative;max-width:100%}
+.rail-progress span{position:absolute;left:0;top:0;bottom:0;background:var(--coral);border-radius:3px;width:30%;transition:left .15s ease,width .15s ease}
+
+/* TOOLS */
+.tools-grid{display:grid;grid-template-columns:1.25fr 1fr 1.25fr;gap:18px}
+.t-card{background:#fff;border:1px solid var(--rule);border-radius:24px;padding:32px}
+.t-card.dark{background:var(--paper-warm);border-color:var(--rule)}
+.t-card h3{font-size:12px;font-family:var(--font-mono);letter-spacing:0.14em;text-transform:uppercase;color:var(--stone-500);font-weight:500;margin:0 0 24px;display:flex;align-items:center;gap:10px}
+.t-card h3::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--coral)}
+.sw-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+.sw{display:flex;align-items:center;gap:12px;font-size:14px;font-weight:500;color:var(--ink)}
+.sw-i{width:38px;height:38px;border-radius:10px;display:grid;place-items:center;font-family:var(--font-mono);font-size:13px;font-weight:700}
+.sw-i.ps{background:#001E36;color:#31A8FF}.sw-i.ai{background:#330000;color:#FF9A00}.sw-i.lr{background:#001E36;color:#31A8FF}.sw-i.pr{background:#00005B;color:#9999FF}.sw-i.ae{background:#00005B;color:#D291FF}.sw-i.au{background:#00005B;color:#00E5B1}.sw-i.da{background:#111;color:#FFB600}.sw-i.bl{background:#EA7600;color:#fff}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chips .c{padding:8px 14px;border-radius:999px;background:var(--cream-100);border:1px solid var(--rule-soft);font-size:13px;color:var(--stone-800);font-weight:500}
+.chips.dark .c{background:var(--stone-800);color:var(--paper);border-color:transparent}
+.chips .c.hl{background:var(--mustard);border-color:transparent;color:var(--ink);font-weight:600}
+.ai-body p{font-size:15px;line-height:1.6;color:var(--stone-700);margin:0 0 20px}
+.ai-title{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px}
+.ai-title .kbd{font-family:var(--font-mono);font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--stone-500);padding:5px 10px;border:1px solid var(--rule);border-radius:6px}
+.tag-list{font-family:var(--font-mono);font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:var(--stone-500);margin:18px 0 10px}
+
+/* EXPERIENCE — editorial list */
+.exp-sec{background:var(--paper-warm);border-top:1px solid var(--rule-soft);border-bottom:1px solid var(--rule-soft)}
+.exp-list{display:flex;flex-direction:column}
+.exp-row{display:grid;grid-template-columns:160px 1fr auto;gap:32px;padding:32px 0;border-top:1px solid var(--rule);align-items:center;transition:padding .3s var(--ease-out)}
+.exp-row:last-child{border-bottom:1px solid var(--rule)}
+.exp-row:hover{padding-left:12px;padding-right:12px;background:rgba(255,255,255,0.4)}
+.exp-period{font-family:var(--font-mono);font-size:13px;letter-spacing:0.04em;color:var(--stone-600)}
+.exp-main h3{font-size:30px;font-weight:600;letter-spacing:-0.02em;margin:0 0 6px;color:var(--ink);display:flex;align-items:center;gap:14px}
+.exp-main h3 .role-tag{font-family:var(--font-mono);font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:var(--coral);background:var(--brand-50);padding:5px 10px;border-radius:999px;font-weight:500}
+.exp-main .role{font-size:14.5px;color:var(--stone-600);margin:0 0 6px;font-weight:500}
+.exp-main p{font-size:15px;line-height:1.6;color:var(--stone-700);margin:0;max-width:640px}
+.exp-row .arr{width:46px;height:46px;border-radius:50%;border:1px solid var(--ink);display:grid;place-items:center;color:var(--ink);transition:background .25s,color .25s,transform .25s;font-size:18px}
+.exp-row:hover .arr{background:var(--coral);border-color:var(--coral);color:#fff;transform:rotate(-45deg)}
+
+/* EDU */
+.edu-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.edu-card{background:#fff;border:1px solid var(--rule);border-radius:24px;padding:40px 36px;display:flex;flex-direction:column;gap:16px;position:relative;overflow:hidden}
+.edu-card .mark{font-family:var(--font-serif);font-style:italic;font-size:120px;line-height:0.9;color:var(--cream-100);position:absolute;right:24px;top:-10px;pointer-events:none}
+.edu-card .eyebrow{margin-bottom:0}
+.edu-card h3{font-size:28px;font-weight:600;letter-spacing:-0.02em;margin:0;color:var(--ink);position:relative}
+.edu-card p{font-size:15px;line-height:1.6;color:var(--stone-700);margin:0;position:relative}
+.edu-card .meta{font-family:var(--font-mono);font-size:12px;letter-spacing:0.1em;color:var(--stone-500);text-transform:uppercase;display:flex;gap:16px;margin-top:auto;padding-top:20px;border-top:1px solid var(--rule);position:relative}
+
+/* CONTACT / CTA */
+.cta-sec{padding:140px 0}
+.cta-box{background:var(--ink);color:var(--paper);border-radius:32px;padding:80px 72px;position:relative;overflow:hidden}
+.cta-box::before{content:"";position:absolute;right:-80px;top:-80px;width:320px;height:320px;border-radius:50%;background:radial-gradient(circle,rgba(217,119,87,0.35),transparent 65%);pointer-events:none}
+.cta-grid{display:grid;grid-template-columns:1.1fr 1fr;gap:64px;align-items:center;position:relative;z-index:2}
+.cta-grid .left h2{font-size:clamp(40px,4.8vw,64px);font-weight:700;line-height:1;letter-spacing:-0.035em;margin:0 0 22px;color:var(--paper)}
+.cta-grid .left h2 .serif{font-family:var(--font-serif);font-style:italic;font-weight:400;color:var(--stone-400)}
+.cta-grid .left h2 .hl{background:var(--mustard);color:var(--ink);padding:0 10px 2px;display:inline-block;transform:rotate(-1.2deg)}
+.cta-grid .left p{font-size:16.5px;line-height:1.55;color:var(--stone-400);max-width:440px;margin:0 0 28px}
+.cta-grid .left .eyebrow{color:var(--stone-400)}
+.cta-grid .left .eyebrow::before{background:var(--mustard)}
+
+.contact-list{display:flex;flex-direction:column;gap:8px}
+.c-item{display:flex;align-items:center;gap:16px;padding:18px 22px;border-radius:14px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);transition:background .25s,transform .25s,border-color .25s}
+.c-item:hover{background:rgba(255,255,255,0.08);transform:translateX(4px);border-color:var(--coral)}
+.c-item .ico{width:40px;height:40px;border-radius:10px;background:var(--mustard);color:var(--ink);display:grid;place-items:center;font-weight:700;flex-shrink:0}
+.c-item .ico svg{width:18px;height:18px;stroke:currentColor;stroke-width:2;fill:none}
+.c-item .txt{display:flex;flex-direction:column;gap:2px;flex:1}
+.c-item .txt small{font-family:var(--font-mono);font-size:10.5px;letter-spacing:0.12em;text-transform:uppercase;color:var(--stone-400)}
+.c-item .txt b{font-size:16px;font-weight:500;color:var(--paper);letter-spacing:-0.005em}
+.c-item .arr{opacity:0.5;font-size:16px;transition:opacity .2s,transform .2s}
+.c-item:hover .arr{opacity:1;transform:rotate(-45deg)}
+.c-row{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+
+/* FOOTER */
+.footer{padding:40px 0 48px;border-top:1px solid var(--rule)}
+.foot-inner{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;font-family:var(--font-mono);font-size:11.5px;letter-spacing:0.1em;text-transform:uppercase;color:var(--stone-500)}
+.foot-inner .brand{font-family:var(--font-sans);text-transform:none;letter-spacing:-0.01em;font-size:14px;color:var(--ink)}
+.foot-inner a:hover{color:var(--coral)}
+
+/* ============= RESPONSIVE ============= */
+@media (max-width:1080px){
+  .hero-grid{grid-template-columns:1fr;gap:64px}
+  .hero-visual{min-height:auto}
+  .portrait-tile{position:relative;right:auto;top:auto;margin:20px 0 0 auto;transform:rotate(2deg)}
+  .sticker{left:auto;right:20px;top:-40px;bottom:auto}
+  .section-head{grid-template-columns:1fr;gap:24px}
+  .tools-grid{grid-template-columns:1fr 1fr}
+  .tools-grid .t-card:last-child{grid-column:1/-1}
+}
+@media (max-width:800px){
+  .nav-links,.nav-phone{display:none}
+  .container{padding:0 22px}
+  .section{padding:80px 0}
+  .hero{padding:40px 0 72px}
+  .headline{font-size:clamp(42px,11vw,72px)}
+  .about-grid,.strength-grid,.edu-grid,.tools-grid,.cta-grid,.c-row{grid-template-columns:1fr}
+  .strength-grid,.edu-grid{grid-template-columns:1fr}
+  .cta-box{padding:48px 28px}
+  .exp-row{grid-template-columns:1fr;gap:12px}
+  .exp-row .arr{justify-self:end}
+  .about-card,.touch-card{padding:28px}
+  .section-head h2{font-size:clamp(32px,9vw,48px)}
+  .hero-visual{padding-top:16px}
+  .portrait-tile{width:200px}
+}
+</style>
+</head>
+<body>
+
+<!-- ============= NAV ============= -->
+<nav class="nav" data-block="" data-block-name="Navigation">
+  <div class="container nav-inner">
+    <a href="#" class="brand">
+      <span class="brand-mark">NS</span>
+      <span>Nguyễn Sơn</span>
+      <span class="brand-meta">Visual · Video · AI</span>
+    </a>
+    <div class="nav-links">
+      <a href="#about">About</a>
+      <a href="#strength">Strength</a>
+      <a href="#tools">Tools</a>
+      <a href="#experience">Experience</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <a href="tel:0946831748" class="nav-phone">0946 831 748</a>
+    <a href="#contact" class="nav-cta">Let's talk <span class="dot">↗</span></a>
+    <button class="nav-toggle" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<!-- ============= HERO ============= -->
+<header class="hero" data-block="" data-block-name="Hero" style="">
+  <div class="container hero-grid">
+    <div class="hero-copy">
+      <div class="eyebrow">
+        <span>Portfolio · 2026</span>
+        <span class="live">Available for projects</span>
+      </div>
+
+      <h1 class="headline" style="">
+        This <span class="serif">is</span> my<br>
+        <span class="hl" contenteditable="false">portfolio</span>,<br><span class="serif" contenteditable="false">for</span>
+        visual &amp;<br>
+        <span class="coral" contenteditable="false">video</span> work<span style="color:var(--coral)">.</span>
+      </h1>
+
+      <p class="hero-lead" style="display: none !important;" data-ed-hidden="1">
+        Mình là <b>Nguyễn Sơn</b> — visual designer &amp; video marketer. Tập trung vào thiết kế quảng cáo, quay dựng, phát triển hình ảnh thương hiệu và nội dung social theo hướng <b>hiện đại, thực chiến, chạy được ngoài thị trường</b>.
+      </p>
+
+      <div class="hero-chips">
+        <span class="chip">Graphic Design</span>
+        <span class="chip">Motion &amp; Video</span>
+        <span class="chip" data-ed-hidden="1" style="display: none !important;">Creative Direction</span>
+        <span class="chip">AI for Marketing</span>
+      </div>
+
+      <div class="actions">
+        <a href="#contact" class="btn btn-primary">
+          Liên hệ hợp tác
+          <span class="arr">→</span>
+        </a>
+        <a href="https://behance.net/ngnxsn" target="_blank" rel="noreferrer" class="btn btn-ghost">Xem Behance <span class="num">/ 01</span></a>
+        <a href="https://drive.google.com/drive/u/0/folders/145hVumg8fH9oSXpE4T6IYwBedtU7xFmv" target="_blank" rel="noreferrer" class="btn btn-ghost">Video sản phẩm <span class="num">/ 02</span></a>
+      </div>
+
+      <div class="trust">
+        <div class="avatars">
+          <span class="av c1">H</span>
+          <span class="av c2">D</span>
+          <span class="av c3">K</span>
+          <span class="av c4">J</span>
+          <span class="av c5">+</span>
+        </div>
+        <div class="trust-text">
+          <div><span class="stars">★★★★★</span><b>4+ năm kinh nghiệm</b></div>
+          <span>Hưng Thịnh · Hadar · Hoàng Kim · JIMIN</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- visual -->
+    <div class="hero-visual">
+      <div class="sticker" style="inset: 192px auto auto -72px;">Visual<br>that<br>sells —<br>2026</div>
+
+      <div class="card-big">
+        <div class="row"><span>Output / month</span><b>Avg. last 12m</b></div>
+        <div class="big-num">120<span class="plus">+</span></div>
+        <div class="big-cap">visual design · video · social content</div>
+        <svg class="spark" viewBox="0 0 360 80" preserveAspectRatio="none">
+          <defs>
+            <linearGradient id="g1" x1="0" x2="0" y1="0" y2="1">
+              <stop offset="0" stop-color="#D97757" stop-opacity="0.35"></stop>
+              <stop offset="1" stop-color="#D97757" stop-opacity="0"></stop>
+            </linearGradient>
+          </defs>
+          <path d="M0,60 L40,52 L80,55 L120,40 L160,42 L200,28 L240,34 L280,18 L320,22 L360,8 L360,80 L0,80 Z" fill="url(#g1)"></path>
+          <path d="M0,60 L40,52 L80,55 L120,40 L160,42 L200,28 L240,34 L280,18 L320,22 L360,8" fill="none" stroke="#D97757" stroke-width="2" stroke-linejoin="round"></path>
+          <circle cx="360" cy="8" r="4" fill="#D97757"></circle>
+          <circle cx="360" cy="8" r="9" fill="none" stroke="#D97757" stroke-opacity="0.25" stroke-width="1"></circle>
+        </svg>
+        <div class="spark-labels"><span>2022</span><span>2023</span><span>2024</span><span>2025</span><span>2026</span></div>
+      </div>
+
+      <div class="stat-strip">
+        <div class="i"><small>Năm kinh nghiệm</small><b>4+</b></div>
+        <div class="i"><small>Dự án đã chạy</small><b>80+</b></div>
+        <div class="i"><small>Vai trò</small><b>Lead / Solo</b></div>
+      </div>
+
+      <div class="tilt-card">
+        <div class="lab">Focus</div>
+        <div class="big">AI×</div>
+        <div class="sub">Marketing workflow</div>
+      </div>
+
+      <div class="portrait-tile">
+        <div class="inner">
+          <div class="img">
+            <img src="https://raw.githubusercontent.com/ngnxsn/portfolio/main/Profile%20pictures.jpg" alt="Nguyễn Sơn" onerror="this.style.display='none';this.parentElement.textContent='NS';">
+          </div>
+          <div class="label"><span>NGNXSN /</span><b>2026</b></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ============= MARQUEE ============= -->
+<section class="marquee-sec" aria-hidden="true" data-block="" data-block-name="Marquee">
+  <div class="marquee">
+    <span class="w">Visual Design<span class="dia"></span></span>
+    <span class="w muted">video marketing</span>
+    <span class="w"><span class="dia"></span>Motion Graphics</span>
+    <span class="w muted">creative direction</span>
+    <span class="w">AI Workflow<span class="dia"></span></span>
+    <span class="w muted">vibe coding</span>
+    <span class="w"><span class="dia"></span>Brand Visual</span>
+    <!-- duplicate -->
+    <span class="w">Visual Design<span class="dia"></span></span>
+    <span class="w muted">video marketing</span>
+    <span class="w"><span class="dia"></span>Motion Graphics</span>
+    <span class="w muted">creative direction</span>
+    <span class="w">AI Workflow<span class="dia"></span></span>
+    <span class="w muted">landing pages</span>
+    <span class="w"><span class="dia"></span>Brand Visual</span>
+  </div>
+</section>
+
+<!-- ============= ABOUT ============= -->
+<section id="about" class="section" data-block="" data-block-name="About">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <div class="eyebrow"><span>About</span></div>
+        <h2>Khái quát hơn về
+ <span class="serif">bản thân</span></h2>
+      </div>
+      <p class="side"><span class="mini">/ 01 — Positioning</span>Không làm kiểu "đẹp cho vui". Mọi visual mình tạo ra đều nhắm tới chuyện phục vụ marketing, bán hàng và thương hiệu — gọn, rõ, có lực và dùng được ngay trong bối cảnh thật.</p>
+    </div>
+
+    <div class="about-grid">
+      <div class="about-card">
+        <p><span class="pill">Kỹ năng của mình </span> bao gồm <b>thiết kế</b> (banner, poster, standee...), <b>chụp ảnh</b> (sản phẩm, sự kiện...) và <b>quay - dựng</b> kết hợp <b>sử dụng AI</b> để sản xuất các dạng video quảng cáo (sản phẩm, dịch vụ, chương trình đào tạo...), video highlight sự kiện và video ngắn trên mạng xã hội Facebook, TikTok...</p>
+        <p>Mình <span class="pill">sử dụng thành thạo</span> các <b> thiết bị quay - chụp</b> (Sony, Canon...) các <b> phần mềm design </b> (Photoshop, Illustrator, InDesign, Blender...)  và các <b> phần mềm editing </b> (Premiere, After Effects, DaVinci Resolve, Adobe Audition...). Ngoài ra còn có thể sử dụng các <b> Angent AI (OpenClaw, Claude Code...) </b> để hỗ trợ cho công việc. </p>
+      </div>
+
+      <aside class="touch-card">
+        <h3>Điểm chạm</h3>
+        <a class="touch-link" href="https://behance.net/ngnxsn" target="_blank" rel="noreferrer">
+          <span class="lead"><small>DESIGN PORTFOLIO</small>Behance / ngnxsn</span>
+          <span class="arr">↗</span>
+        </a>
+        <a class="touch-link" href="https://drive.google.com/drive/u/0/folders/145hVumg8fH9oSXpE4T6IYwBedtU7xFmv" target="_blank" rel="noreferrer">
+          <span class="lead"><small>VIDEO PORTFOLIO</small>Google Drive Portfolio</span>
+          <span class="arr">↗</span>
+        </a>
+        <a class="touch-link" href="https://ngnxsn.github.io/portfolio/games/flappy-pixel/" target="_blank" rel="noreferrer">
+          <span class="lead"><small>Side quest</small>Chơi thử mini game</span>
+          <span class="arr">↗</span>
+        </a>
+        
+        <div class="touch-note">SẴN SÀNG CHO DỰ ÁN FREELANCE, IN-HOUSE HOẶC ĐÀO TẠO SÁNG TẠO.</div>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- ============= STRENGTH ============= -->
+<section id="strength" class="section" style="padding-top:40px" data-block="" data-block-name="Strength">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <div class="eyebrow"><span>Strength</span></div>
+        <h2>Ba mũi chính <span class="serif">tạo ra</span> kết quả</h2>
+      </div>
+      <p class="side"><span class="mini">/ 02 — What i do</span>Mỗi "mũi" đều có workflow, tool và timeline cụ thể. Mình không chỉ trao file — mình trao một asset đã sẵn sàng chạy chiến dịch.</p>
+    </div>
+
+    <div class="strength-grid">
+      <article class="str-card">
+        <div class="num">01 <span style="color:var(--coral)">/</span> Design</div>
+        <div class="ico">
+          <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"></rect><path d="M3 9h18M9 3v18"></path></svg>
+        </div>
+        <h3>Thiết kế quảng cáo</h3>
+        <p>Banner, poster, key visual, social post, hình sản phẩm và toàn bộ phần nhìn cần đủ thu hút để kéo người xem dừng lại.</p>
+        <ul>
+          <li>Photoshop · Illustrator <span>/ daily</span></li>
+          <li>Brand asset · packaging <span>/ scaled</span></li>
+        </ul>
+      </article>
+
+      <article class="str-card">
+        <div class="num">02 <span style="color:var(--coral)">/</span> Video</div>
+        <div class="ico">
+          <svg viewBox="0 0 24 24"><polygon points="22 6 12 12 22 18 22 6"></polygon><rect x="2" y="6" width="12" height="12" rx="2"></rect></svg>
+        </div>
+        <h3>Video marketing</h3>
+        <p>Quay dựng video ads, video giới thiệu, video ngắn social với nhịp nhanh, thông điệp gọn, tối ưu cho content ads.</p>
+        <ul>
+          <li>Premiere · After Effects <span>/ daily</span></li>
+          <li>TikTok · Reels · YouTube <span>/ shipped</span></li>
+        </ul>
+      </article>
+
+      <article class="str-card">
+        <div class="num">03 <span style="color:var(--coral)">/</span> Rollout</div>
+        <div class="ico">
+          <svg viewBox="0 0 24 24"><path d="M3 12h18M12 3l9 9-9 9"></path></svg>
+        </div>
+        <h3>AI For Marketing</h3>
+        <p>Cập nhật liên tục, phục vụ nhu cầu tối ưu thời gian và chi phí cho công việc</p>
+        <ul>
+          <li>Ads creative · LP · content <span>/ end-to-end</span></li>
+          <li>Team lead / Solo <span>/ flexible</span></li>
+        </ul>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============= PROJECTS ============= -->
+<section id="projects" class="projects-sec" data-block="" data-block-name="Projects">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <div class="eyebrow"><span>Featured projects</span></div>
+        <h2>Một vài sản phẩm <span class="serif">nổi bật</span></h2>
+      </div>
+      <p class="side"><span class="mini" style="color:var(--stone-400)">/ 03 — Featured</span>Kéo ngang để xem thêm. Mỗi card dẫn tới case đầy đủ trên <b style="color:var(--paper)">Behance</b> hoặc preview video trên <b style="color:var(--paper)">Google Drive</b>.</p>
+    </div>
+
+    <div class="rail" id="projects-rail">
+      <a class="p-card" href=" https://www.behance.net/gallery/207644587/KEY-VISUAL-PROMIX" target="_blank" rel="noreferrer" data-block-name="Project 01">
+        <div class="thumb">
+          <img alt="Project 01 preview" src="https://raw.githubusercontent.com/ngnxsn/portfolio/refs/heads/main/c3d92f207644587.Y3JvcCw5NjYsNzU2LDE1NSww.png">
+          
+          <span class="tag">Behance</span>
+          <span class="play">↗</span>
+        </div>
+        <div class="body">
+          <div><h4>Project 01</h4><p>Xem project trên Behance</p></div>
+          <span class="arr">→</span>
+        </div>
+      </a>
+
+      <a class="p-card" href=" https://www.behance.net/gallery/202440931/SOCIAL-MEDIA-POST-KINSHY-SPA-(updating)" target="_blank" rel="noreferrer" data-block-name="Project 02">
+        <div class="thumb">
+          <img alt="Project 02 preview" src="https://raw.githubusercontent.com/ngnxsn/portfolio/refs/heads/main/54494d202440931.Y3JvcCwxOTk5LDE1NjQsMCwyMDc.jpg">
+          <div class="thumb-empty">Click vào ảnh<br>để upload preview</div><div class="thumb-empty">Click vào ảnh<br>để upload preview</div>
+          <span class="tag">Behance</span>
+          <span class="play">↗</span>
+        </div>
+        <div class="body">
+          <div><h4>Project 02</h4><p>Xem project trên Behance</p></div>
+          <span class="arr">→</span>
+        </div>
+      </a>
+
+      <a class="p-card" href=" https://www.behance.net/gallery/189158417/Nineshield-Ecommerce-Design-(Tt-2024)" target="_blank" rel="noreferrer" data-block-name="Project 03">
+        <div class="thumb">
+          <img alt="Project 03 preview" src="https://raw.githubusercontent.com/ngnxsn/portfolio/refs/heads/main/81a15a189158417.Y3JvcCwxODEyLDE0MTgsMzEsMA.jpg">
+          <div class="thumb-empty">Click vào ảnh<br>để upload preview</div>
+          <span class="tag">Behance</span>
+          <span class="play">↗</span>
+        </div>
+        <div class="body">
+          <div><h4>Project 03</h4><p>Xem project trên Behance</p></div>
+          <span class="arr">→</span>
+        </div>
+      </a>
+
+      
+
+      <a class="p-card" href="https://drive.google.com/file/d/1dMS-Tmt-FJP6dHxGPq_rnvpWat4HxwCI/preview" target="_blank" rel="noreferrer" data-block-name="Video preview 01">
+        <div class="thumb"><iframe allow="autoplay; fullscreen" allowfullscreen="" frameborder="0" loading="lazy" src="https://drive.google.com/file/d/1dMS-Tmt-FJP6dHxGPq_rnvpWat4HxwCI/preview" data-original-url="https://drive.google.com/file/d/1dMS-Tmt-FJP6dHxGPq_rnvpWat4HxwCI/preview"></iframe>
+          
+          <div class="thumb-empty">Click vào ảnh<br>để upload thumbnail</div><div class="thumb-empty">Click vào ảnh<br>để upload thumbnail</div><div class="thumb-empty">Click vào ảnh<br>để upload thumbnail</div>
+          <span class="tag">Drive · Video</span>
+          <span class="play">▶</span>
+        </div>
+        <div class="body">
+          <div><h4>Video Preview 01</h4><p>Preview từ Google Drive</p></div>
+          <span class="arr">→</span>
+        </div>
+      </a>
+
+      <a class="p-card" href="https://drive.google.com/file/d/1v0b6pgeRffRUtNHWtE4Jce6MIQYFpax-/preview" target="_blank" rel="noreferrer" data-block-name="Video preview 02">
+        <div class="thumb"><iframe allow="autoplay; fullscreen" allowfullscreen="" frameborder="0" loading="lazy" src="https://drive.google.com/file/d/1v0b6pgeRffRUtNHWtE4Jce6MIQYFpax-/preview" data-original-url="https://drive.google.com/file/d/1v0b6pgeRffRUtNHWtE4Jce6MIQYFpax-/preview"></iframe>
+          
+          <div class="thumb-empty">Click vào ảnh<br>để upload thumbnail</div><div class="thumb-empty">Click vào ảnh<br>để upload thumbnail</div><div class="thumb-empty">Click vào ảnh<br>để upload thumbnail</div><div class="thumb-empty">Click vào ảnh<br>để upload thumbnail</div><div class="thumb-empty">Click vào ảnh<br>để upload thumbnail</div><div class="thumb-empty">Click vào ảnh<br>để upload thumbnail</div><div class="thumb-empty">Click vào ảnh<br>để upload thumbnail</div><div class="thumb-empty">Click vào ảnh<br>để upload thumbnail</div>
+          <span class="tag">Drive · Video</span>
+          <span class="play">▶</span>
+        </div>
+        <div class="body">
+          <div><h4>Video Preview 02</h4><p>Preview từ Google Drive</p></div>
+          <span class="arr">→</span>
+        </div>
+      </a><a class="p-card" href=" https://drive.google.com/file/d/1ExoBPFUP4VziJtgQU2BHig1pAqRibQqz/preview" target="_blank" rel="noreferrer" data-block-name="Video preview 02 · copy">
+        <div class="thumb"><iframe allow="autoplay; fullscreen" allowfullscreen="" frameborder="0" loading="lazy" src="https://drive.google.com/file/d/1ExoBPFUP4VziJtgQU2BHig1pAqRibQqz/preview" data-original-url=" https://drive.google.com/file/d/1ExoBPFUP4VziJtgQU2BHig1pAqRibQqz/preview"></iframe>
+          
+          <div class="thumb-empty">Click vào ảnh<br>để upload thumbnail</div><div class="thumb-empty">Click vào ảnh<br>để upload thumbnail</div><div class="thumb-empty">Click vào ảnh<br>để upload thumbnail</div><div class="thumb-empty">Click vào ảnh<br>để upload thumbnail</div><div class="thumb-empty">Click vào ảnh<br>để upload thumbnail</div><div class="thumb-empty">Click vào ảnh<br>để upload thumbnail</div><div class="thumb-empty">Click vào ảnh<br>để upload thumbnail</div><div class="thumb-empty">Click vào ảnh<br>để upload thumbnail</div>
+          <span class="tag">Drive · Video</span>
+          <span class="play">▶</span>
+        </div>
+        <div class="body">
+          <div><h4>Video Preview 02</h4><p>Preview từ Google Drive</p></div>
+          <span class="arr">→</span>
+        </div>
+      </a>
+    </div>
+
+    <div class="rail-progress" aria-hidden="true"><span id="projects-rail-bar" style="width: 57.09%; left: 42.91%;"></span></div>
+  </div>
+</section>
+
+<!-- ============= TOOLS ============= -->
+<section id="tools" class="section" data-block="" data-block-name="Tools &amp; AI">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <div class="eyebrow"><span>Tools &amp; AI stack</span></div>
+        <h2>Bộ <span class="serif">công cụ</span> mình sử dụng</h2>
+      </div>
+      <p class="side"><span class="mini">/ 04 — Workflow</span>Mình chọn tool dựa trên kết quả cuối, không theo trào lưu. AI được tích hợp để tăng tốc — không thay thế tư duy sáng tạo.</p>
+    </div>
+
+    <div class="tools-grid">
+      <div class="t-card">
+        <h3>Creative software</h3>
+        <div class="sw-grid">
+          <div class="sw"><span class="sw-i ps">Ps</span>Photoshop</div>
+          <div class="sw"><span class="sw-i ai">Ai</span>Illustrator</div>
+          <div class="sw"><span class="sw-i lr">Lr</span>Lightroom</div>
+          <div class="sw"><span class="sw-i pr">Pr</span>Premiere Pro</div>
+          <div class="sw"><span class="sw-i ae">Ae</span>After Effects</div>
+          <div class="sw"><span class="sw-i au">Au</span>Audition</div>
+          <div class="sw"><span class="sw-i da">Da</span>DaVinci Resolve</div>
+          <div class="sw"><span class="sw-i bl">Bl</span>Blender</div><div class="sw"><span class="sw-i bl" style="background-color: rgb(0, 0, 0); color: rgb(255, 255, 255);">C</span>CAPCUT</div><div class="sw"><span class="sw-i bl" style="background-color: rgb(148, 0, 189); color: rgb(255, 255, 255);">VS</span>Visual Studio</div>
+        </div>
+      </div>
+
+      <div class="t-card">
+        <h3>Execution skills</h3>
+        <div class="chips">
+          <span class="c hl">Quay - Dựng</span>
+          <span class="c">Motion Graphics</span>
+          <span class="c">Graphic Design</span>
+          <span class="c">Chụp ảnh</span>
+          <span class="c">Landing Pages</span>
+          <span class="c">Drawing</span>
+          
+          <span class="c">Creative Direction</span><span class="c">Visual Marketing</span>
+        </div>
+        <div class="tag-list">/ 08 core skills — daily use</div>
+      </div>
+
+      <div class="t-card dark ai-body">
+        <div class="ai-title">
+          <h3 style="margin:0">AI skills &amp; tools</h3>
+          <span class="kbd">Live · 2026</span>
+        </div>
+        <p>Dùng AI theo hướng tăng tốc production, lên concept, xử lý hình ảnh, tạo video và tối ưu workflow sáng tạo cho marketing.</p>
+        <div class="chips">
+          <span class="c">AI Image Prompting</span>
+          <span class="c">AI Video Workflow</span>
+          <span class="c">Creative Ideation</span>
+          <span class="c">Marketing Content Assist</span><span class="c">Vibe Coding</span>
+        </div>
+        <div class="tag-list">/ stack</div>
+        <div class="chips dark">
+          <span class="c">Nano Banana Pro</span>
+          <span class="c">Sora</span>
+          <span class="c">Runway</span>
+          <span class="c">VEO 3.1</span>
+          <span class="c">Seedance 2.0</span><span class="c">Kling AI 3.0</span><span class="c">Claude Code/Design</span><span class="c">Chatgpt Images 2.0</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============= EXPERIENCE ============= -->
+<section id="experience" class="exp-sec section" data-block="" data-block-name="Experience">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <div class="eyebrow"><span>Selected experience</span></div>
+        <h2>Những chặng đường <span class="serif">kinh nghiệm</span></h2>
+      </div>
+      <p class="side"><span class="mini">/ 05 — Career</span>4+ năm bồi qua cả vai trò solo, team lead và co-founder. Mỗi chặng đều để lại asset thật trên thị trường.</p>
+    </div>
+
+    <div class="exp-list">
+      <div class="exp-row">
+        <div class="exp-period">2/2022 — 1/2023</div>
+        <div class="exp-main">
+          <h3>Hưng Thịnh <span class="role-tag">Design · Video</span></h3>
+          <p class="role">Thiết kế &amp; quay dựng, sau đó lên Trưởng nhóm Media</p>
+          <p>Triển khai bộ nhận diện, bao bì, hình ảnh sản phẩm, video quảng cáo, banner website và nội dung cho sàn thương mại điện tử.</p>
+        </div>
+        <a class="arr" href="#">→</a>
+      </div>
+
+      <div class="exp-row">
+        <div class="exp-period">1/2023 — 4/2023</div>
+        <div class="exp-main">
+          <h3>Hadar Studios <span class="role-tag">Co-founder</span></h3>
+          <p class="role">Đồng sáng lập dự án cá nhân</p>
+          <p>Phát triển dịch vụ thiết kế, chụp ảnh, quay dựng video và landing page cho cá nhân, thương hiệu và mô hình kinh doanh online.</p>
+        </div>
+        <a class="arr" href="https://hadarstudios.com" target="_blank" rel="noreferrer">→</a>
+      </div>
+
+      <div class="exp-row">
+        <div class="exp-period">5/2023 — 6/2024</div>
+        <div class="exp-main">
+          <h3>Hoàng Kim Cosmetic / Deva Cell <span class="role-tag">Media Lead</span></h3>
+          <p class="role">Trưởng nhóm Media</p>
+          <p>Quản lý và sản xuất nội dung thiết kế, ảnh chụp, video sản phẩm, video quảng cáo và short-form content cho TikTok / Facebook.</p>
+        </div>
+        <a class="arr" href="#">→</a>
+      </div>
+
+      <div class="exp-row">
+        <div class="exp-period">7/2024 — 3/2026</div>
+        <div class="exp-main">
+          <h3>JIMIN <span class="role-tag">Ads Video</span></h3>
+          <p class="role">Nhân viên quay — dựng</p>
+          <p>Phụ trách video ads cho các ngành phong thủy, thẩm mỹ không xâm lấn, giảm béo và detox cơ thể.</p>
+        </div>
+        <a class="arr" href="#">→</a>
+      </div><div class="exp-row">
+        <div class="exp-period" contenteditable="false">2026 — Hiện tại</div>
+        <div class="exp-main">
+          <h3>ITPLUS <span class="role-tag">GIẢNG DẠY</span></h3>
+          
+          <p>Giảng dạy online các khoá học về thiết kế, quay dựng, AI for marketing.</p>
+        </div>
+        <a class="arr" href="#">→</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============= EDUCATION ============= -->
+<section class="section" style="padding-top:120px" data-block="" data-block-name="Education">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <div class="eyebrow"><span>Education</span></div>
+        <h2>Nền tảng <span class="serif">chuyên môn</span></h2>
+      </div>
+      <p class="side"><span class="mini">/ 06 — Background</span>Gốc từ trường, tinh từ việc. Hai nguồn luôn song hành để giữ tay nghề và tư duy cập nhật.</p>
+    </div>
+
+    <div class="edu-grid">
+      <div class="edu-card">
+        <span class="mark">01</span>
+        <div class="eyebrow"><span>2018 — 2022</span></div>
+        <h3>ĐH Công Nghiệp Việt — Hung</h3>
+        <p>Tốt nghiệp ngành <b>Thiết Kế Đồ Họa</b>. Nền tảng bài bản về color, composition, typography và tư duy thị giác.</p>
+        <div class="meta"><span>Formal training</span><span>Graphic Design</span></div>
+      </div>
+      <div class="edu-card">
+        <span class="mark">02</span>
+        <div class="eyebrow"><span>Ongoing</span></div>
+        <h3>Visual Thinking — Thực chiến</h3>
+        <p>Tiếp tục được bồi qua công việc thật: môi trường ads, social content, quay dựng và sản xuất cho marketing hằng ngày.</p>
+        <div class="meta"><span>On-the-job</span><span>Self-driven</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============= CONTACT ============= -->
+<section id="contact" class="cta-sec" data-block="" data-block-name="Contact / CTA">
+  <div class="container">
+    <div class="cta-box">
+      <div class="cta-grid">
+        <div class="left">
+          <div class="eyebrow"><span>Let's make it</span></div>
+          <h2>Cần một người vừa <span class="serif">làm visual</span>, vừa hiểu <span class="hl">nhịp marketing</span>?</h2>
+          <p>Phù hợp cho visual ads, social content, video ngắn, hình ảnh thương mại, landing page và đào tạo sáng tạo ứng dụng.</p>
+          <a href="mailto:nguyenson.0312vn@gmail.com" class="btn btn-primary" style="background:var(--mustard);color:var(--ink);border-color:var(--mustard)">
+            Liên hệ qua email
+            <span class="arr" style="background:var(--ink);color:var(--mustard)">→</span>
+          </a>
+        </div>
+
+        <div class="contact-list">
+          <a class="c-item" href="mailto:nguyenson.0312vn@gmail.com">
+            <span class="ico"><svg viewBox="0 0 24 24"><path d="M4 4h16v16H4z"></path><path d="M4 4l8 8 8-8"></path></svg></span>
+            <span class="txt"><small>Email</small><b>nguyenson.0312vn@gmail.com</b></span>
+            <span class="arr">↗</span>
+          </a>
+          <div class="c-row">
+            <a class="c-item" href="tel:0946831748">
+              <span class="ico"><svg viewBox="0 0 24 24"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3.1-8.7A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.3 1.8.6 2.7a2 2 0 0 1-.5 2.1L8 9.6a16 16 0 0 0 6 6l1.1-1.1a2 2 0 0 1 2.1-.5c.9.3 1.8.5 2.7.6a2 2 0 0 1 1.7 2Z"></path></svg></span>
+              <span class="txt"><small>Call</small><b>0946831748</b></span>
+              <span class="arr">↗</span>
+            </a>
+            <a class="c-item" href="https://zalo.me/0946831748" target="_blank" rel="noreferrer">
+              <span class="ico" style="background:#0084FF;color:#fff;font-family:var(--font-mono);font-size:12px">Zalo</span>
+              <span class="txt"><small>Chat</small><b>Zalo</b></span>
+              <span class="arr">↗</span>
+            </a>
+          </div>
+          <div class="c-item" style="cursor:default">
+            <span class="ico"><svg viewBox="0 0 24 24"><path d="M12 22s8-7.5 8-13a8 8 0 1 0-16 0c0 5.5 8 13 8 13Z"></path><circle cx="12" cy="9" r="3"></circle></svg></span>
+            <span class="txt"><small>Base</small><b>Tây Hồ, Hà Nội</b></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============= FOOTER ============= -->
+<footer class="footer" data-block="" data-block-name="Footer">
+  <div class="container foot-inner">
+    <span class="brand">© 2026 Nguyễn Sơn — Visual portfolio</span>
+    <span>Designed &amp; coded by /ngnxsn</span>
+    <span><a href="#">Back to top ↑</a></span>
+  </div>
+</footer>
+
+<script>
+  // Smooth anchor scroll (no scrollIntoView)
+  document.querySelectorAll('a[href^="#"]').forEach(a=>{
+    a.addEventListener('click',e=>{
+      const id=a.getAttribute('href');
+      if(id.length<2) return;
+      const t=document.querySelector(id);
+      if(!t) return;
+      e.preventDefault();
+      const y=t.getBoundingClientRect().top+window.pageYOffset-80;
+      window.scrollTo({top:y,behavior:'smooth'});
+    });
+  });
+
+  // Projects rail — horizontal scroll progress bar
+  (function(){
+    const rail=document.getElementById('projects-rail');
+    const bar=document.getElementById('projects-rail-bar');
+    if(!rail||!bar) return;
+    function update(){
+      const total=rail.scrollWidth;
+      const view=rail.clientWidth;
+      const max=total-view;
+      const pct=Math.max(8,Math.min(100,(view/total)*100));
+      const left=max>0?(rail.scrollLeft/max)*(100-pct):0;
+      bar.style.width=pct.toFixed(2)+'%';
+      bar.style.left=left.toFixed(2)+'%';
+    }
+    rail.addEventListener('scroll',update,{passive:true});
+    window.addEventListener('resize',update);
+    setTimeout(update,80);
+  })();
+</script>
+
+
+</body></html>
