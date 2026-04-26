@@ -56,7 +56,16 @@ button{font:inherit;cursor:pointer}
 .nav-cta:hover{background:var(--coral);transform:translateY(-1px)}
 .nav-cta .dot{width:24px;height:24px;border-radius:50%;background:var(--mustard);color:var(--ink);display:grid;place-items:center;font-size:11px}
 .nav-toggle{display:none;border:1px solid var(--rule);background:#fff;border-radius:10px;padding:10px;margin-left:auto}
-.nav-toggle span{display:block;width:20px;height:2px;background:var(--ink);margin:4px 0}
+.nav-toggle span{display:block;width:20px;height:2px;background:var(--ink);margin:4px 0;transition:transform .2s,opacity .2s}
+.nav-toggle.is-open span:nth-child(1){transform:rotate(45deg) translate(4.5px,4.5px)}
+.nav-toggle.is-open span:nth-child(2){opacity:0;transform:scaleX(0)}
+.nav-toggle.is-open span:nth-child(3){transform:rotate(-45deg) translate(4.5px,-4.5px)}
+
+.nav-mobile{display:none;flex-direction:column;background:var(--ink);border-top:1px solid rgba(255,255,255,0.08);padding:8px 0 24px}
+.nav-mobile.is-open{display:flex}
+.nav-m-link{display:block;padding:14px 0;font-size:20px;font-weight:600;color:var(--paper);letter-spacing:-0.025em;border-bottom:1px solid rgba(255,255,255,0.07);transition:color .15s,padding-left .15s}
+.nav-m-link:last-child{border-bottom:none}
+.nav-m-link:hover{color:var(--mustard);padding-left:6px}
 
 /* ============= HERO ============= */
 .hero{padding:56px 0 96px;position:relative}
@@ -323,14 +332,24 @@ html.__ed-mode .p-card .thumb img[src=""]+.thumb-empty{display:grid}
   .tools-grid .t-card:last-child{grid-column:1/-1}
 }
 @media (max-width:800px){
-  .nav-links,.nav-phone{display:none}
+  .nav-links,.nav-phone,.nav-cta,.brand-mark{display:none}
+  .brand-meta{display:none}
+  .nav-toggle{display:block}
   .container{padding:0 22px}
   .section{padding:80px 0}
   .hero{padding:40px 0 72px}
   .headline{font-size:clamp(42px,11vw,72px)}
   .about-grid,.strength-grid,.edu-grid,.tools-grid,.cta-grid,.c-row{grid-template-columns:1fr}
   .strength-grid,.edu-grid{grid-template-columns:1fr}
-  .cta-box{padding:48px 28px}
+  .cta-sec{padding:80px 0}
+  .cta-box{padding:36px 20px;border-radius:24px;overflow:hidden}
+  .cta-grid .left{min-width:0}
+  .cta-grid .left h2{font-size:clamp(22px,6.5vw,32px);line-height:1.1;overflow-wrap:anywhere;word-break:break-word}
+  .cta-grid .left h2 .hl{display:inline;transform:none;padding:0 6px 2px;border-radius:3px}
+  .cta-grid .left h2 .serif{display:inline}
+  .cta-grid .left p{font-size:14.5px;max-width:100%;overflow-wrap:anywhere}
+  .c-item .txt b{font-size:14px}
+  .contact-list{min-width:0}
   .exp-row{grid-template-columns:1fr;gap:12px}
   .exp-row .arr{justify-self:end}
   .about-card,.touch-card{padding:28px}
@@ -359,7 +378,16 @@ html.__ed-mode .p-card .thumb img[src=""]+.thumb-empty{display:grid}
     </div>
     <a href="tel:0946831748" class="nav-phone">0946 831 748</a>
     <a href="#contact" class="nav-cta">Let's talk <span class="dot">↗</span></a>
-    <button class="nav-toggle" aria-label="Menu"><span></span><span></span><span></span></button>
+    <button class="nav-toggle" id="nav-toggle" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
+  </div>
+  <div class="nav-mobile" id="nav-mobile" aria-hidden="true">
+    <div class="container">
+      <a href="#about" class="nav-m-link">About</a>
+      <a href="#strength" class="nav-m-link">Strength</a>
+      <a href="#tools" class="nav-m-link">Tools</a>
+      <a href="#experience" class="nav-m-link">Experience</a>
+      <a href="#contact" class="nav-m-link">Contact</a>
+    </div>
   </div>
 </nav>
 
@@ -373,7 +401,7 @@ html.__ed-mode .p-card .thumb img[src=""]+.thumb-empty{display:grid}
       </div>
 
       <h1 class="headline" style="">
-           Đây  <span class="serif">là</span><br>
+        Đây  <span class="serif">là</span><br>
         <span class="hl" contenteditable="false">portfolio</span>,<br><span class="serif" contenteditable="false">nơi</span>
         tôi kể<br>
         <span class="coral" contenteditable="false">hành</span> trình<span style="color:var(--coral)">.</span>
@@ -451,9 +479,7 @@ html.__ed-mode .p-card .thumb img[src=""]+.thumb-empty{display:grid}
 
       <div class="portrait-tile">
         <div class="inner">
-          <div class="img">
-            <img src="https://raw.githubusercontent.com/ngnxsn/portfolio-old/main/Profile%20pictures.jpg" alt="Nguyễn Sơn" onerror="this.style.display='none';this.parentElement.textContent='NS';">
-          </div>
+          <div class="img">NS</div>
           <div class="label"><span>NGNXSN /</span><b>2026</b></div>
         </div>
       </div>
@@ -666,7 +692,7 @@ html.__ed-mode .p-card .thumb img[src=""]+.thumb-empty{display:grid}
       </a>
     </div>
 
-    <div class="rail-progress" aria-hidden="true"><span id="projects-rail-bar" style="width: 57.09%; left: 42.91%;"></span></div>
+    <div class="rail-progress" aria-hidden="true"><span id="projects-rail-bar" style="width: 57.09%; left: 33.62%;"></span></div>
   </div>
 </section>
 
@@ -894,6 +920,29 @@ html.__ed-mode .p-card .thumb img[src=""]+.thumb-empty{display:grid}
       window.scrollTo({top:y,behavior:'smooth'});
     });
   });
+
+  // Mobile nav toggle
+  (function(){
+    const btn=document.getElementById('nav-toggle');
+    const menu=document.getElementById('nav-mobile');
+    if(!btn||!menu) return;
+    btn.addEventListener('click',function(e){
+      e.preventDefault();
+      e.stopPropagation();
+      const open=menu.classList.toggle('is-open');
+      btn.classList.toggle('is-open',open);
+      btn.setAttribute('aria-expanded',open?'true':'false');
+      menu.setAttribute('aria-hidden',open?'false':'true');
+    });
+    menu.querySelectorAll('a').forEach(a=>{
+      a.addEventListener('click',()=>{
+        menu.classList.remove('is-open');
+        btn.classList.remove('is-open');
+        btn.setAttribute('aria-expanded','false');
+        menu.setAttribute('aria-hidden','true');
+      });
+    });
+  })();
 
   // Projects rail — horizontal scroll progress bar
   (function(){
