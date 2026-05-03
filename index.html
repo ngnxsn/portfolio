@@ -1,4 +1,4 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="vi" class="" style=""><head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -20,7 +20,7 @@
   --rule:rgba(20,17,12,0.10);--rule-soft:rgba(20,17,12,0.06);
   --coral:var(--brand-500);
   --font-sans:"Be Vietnam Pro",ui-sans-serif,system-ui,sans-serif;
-  --font-serif:"Instrument Serif",Georgia,serif;
+  --font-serif:"Noto Serif Display",Georgia,serif;
   --font-mono:"JetBrains Mono",ui-monospace,Menlo,monospace;
   --ease-out:cubic-bezier(0.22,1,0.36,1);
   --page-max:1280px;
@@ -81,7 +81,7 @@ button{font:inherit;cursor:pointer}
   font-size:clamp(48px,7vw,104px);line-height:0.96;letter-spacing:-0.035em;
   color:var(--ink);margin:0;
 }
-.headline .serif{font-family:var(--font-serif);font-style:italic;font-weight:400;color:var(--stone-700);letter-spacing:-0.02em}
+.headline .serif{font-family:var(--font-serif);font-style:italic;font-weight:350;color:var(--stone-700);letter-spacing:-0.02em}
 .headline .hl{position:relative;display:inline-block;padding:0 12px 2px;background:var(--mustard);transform:rotate(-1.5deg);margin:0 3px}
 .headline .coral{color:var(--coral)}
 .headline .under{background:linear-gradient(180deg,transparent 70%,var(--mustard) 70%);padding:0 4px}
@@ -149,7 +149,7 @@ button{font:inherit;cursor:pointer}
 .marquee-sec{border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);padding:26px 0;overflow:hidden;background:#FAF6EC}
 .marquee{display:flex;gap:40px;animation:scroll 32s linear infinite;white-space:nowrap;align-items:center;width:max-content}
 .marquee .w{font-size:28px;font-weight:600;letter-spacing:-0.02em;color:var(--stone-800);display:inline-flex;align-items:center;gap:40px}
-.marquee .w.muted{color:var(--stone-400);font-family:var(--font-serif);font-style:italic;font-weight:400;font-size:32px}
+.marquee .w.muted{color:var(--stone-400);font-family:var(--font-serif);font-style:italic;font-weight:350;font-size:32px}
 .marquee .dia{width:10px;height:10px;background:var(--coral);transform:rotate(45deg);display:inline-block;flex-shrink:0}
 @keyframes scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 
@@ -158,7 +158,7 @@ button{font:inherit;cursor:pointer}
 .section-head{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:end;margin-bottom:60px}
 .section-head.single{grid-template-columns:1fr}
 .section-head h2{font-size:clamp(40px,5vw,68px);font-weight:700;line-height:1;letter-spacing:-0.035em;color:var(--ink);margin:0}
-.section-head h2 .serif{font-family:var(--font-serif);font-style:italic;font-weight:400;color:var(--stone-700);letter-spacing:-0.02em}
+.section-head h2 .serif{font-family:var(--font-serif);font-style:italic;font-weight:350;color:var(--stone-700);letter-spacing:-0.02em}
 .section-head h2 .coral{color:var(--coral)}
 .section-head h2 .hl{background:var(--mustard);padding:0 10px 2px;display:inline-block;transform:rotate(-1.2deg);margin:0 2px}
 .section-head .side{font-size:16px;line-height:1.55;color:var(--stone-700);max-width:440px;padding-bottom:6px}
@@ -297,7 +297,7 @@ html.__ed-mode .p-card .thumb img[src=""]+.thumb-empty{display:grid}
 .cta-box::before{content:"";position:absolute;right:-80px;top:-80px;width:320px;height:320px;border-radius:50%;background:radial-gradient(circle,rgba(217,119,87,0.35),transparent 65%);pointer-events:none}
 .cta-grid{display:grid;grid-template-columns:1.1fr 1fr;gap:64px;align-items:center;position:relative;z-index:2}
 .cta-grid .left h2{font-size:clamp(40px,4.8vw,64px);font-weight:700;line-height:1;letter-spacing:-0.035em;margin:0 0 22px;color:var(--paper)}
-.cta-grid .left h2 .serif{font-family:var(--font-serif);font-style:italic;font-weight:400;color:var(--stone-400)}
+.cta-grid .left h2 .serif{font-family:var(--font-serif);font-style:italic;font-weight:350;color:var(--stone-400)}
 .cta-grid .left h2 .hl{background:var(--mustard);color:var(--ink);padding:0 10px 2px;display:inline-block;transform:rotate(-1.2deg)}
 .cta-grid .left p{font-size:16.5px;line-height:1.55;color:var(--stone-400);max-width:440px;margin:0 0 28px}
 .cta-grid .left .eyebrow{color:var(--stone-400)}
@@ -966,3 +966,4 @@ html.__ed-mode .p-card .thumb img[src=""]+.thumb-empty{display:grid}
 
 
 </body></html>
+
