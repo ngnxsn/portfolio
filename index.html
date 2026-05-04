@@ -377,46 +377,29 @@ html.__ed-mode .p-card .thumb img[src=""]+.thumb-empty{display:grid}
       <a href="#contact">Contact</a>
     </div>
    
-    <a href="#" class="copy-phone" data-phone="0946831748">
-  <span class="phone-text">0946 831 748</span>
-
-  <span class="icon-copy">
-    <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <a href="#" class="nav-phone copy-phone" data-phone="0946831748">
+  0946 831 748
+  <span class="copy-icon" aria-hidden="true">
+    <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
       <rect x="9" y="9" width="10" height="10" rx="2"></rect>
       <path d="M5 15V7a2 2 0 0 1 2-2h8"></path>
-    </svg>
-  </span>
-
-  <span class="icon-success" style="display:none;">
-    <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-      <path d="M20 6L9 17l-5-5"></path>
     </svg>
   </span>
 </a>
 
 <style>
-  .copy-phone {
+  .copy-phone .copy-icon {
     display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    text-decoration: none;
-    color: inherit;
-    cursor: pointer;
+    vertical-align: middle;
+    margin-left: 6px;
   }
 
-  .copy-phone svg {
-    display: block;
+  .copy-phone.copied .copy-icon svg {
+    stroke: #16a34a;
   }
 
-  .icon-copy,
-  .icon-success {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .icon-success {
-    color: #16a34a;
+  .copy-phone.copied .copy-icon {
+    content: "";
   }
 </style>
 
@@ -424,18 +407,23 @@ html.__ed-mode .p-card .thumb img[src=""]+.thumb-empty{display:grid}
   document.querySelector('.copy-phone').addEventListener('click', async function(e) {
     e.preventDefault();
 
-    const phone = this.dataset.phone;
-    const copyIcon = this.querySelector('.icon-copy');
-    const successIcon = this.querySelector('.icon-success');
-
     try {
-      await navigator.clipboard.writeText(phone);
-      copyIcon.style.display = 'none';
-      successIcon.style.display = 'inline-flex';
+      await navigator.clipboard.writeText(this.dataset.phone);
+      this.classList.add('copied');
+      this.querySelector('.copy-icon').innerHTML = `
+        <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M20 6L9 17l-5-5"></path>
+        </svg>
+      `;
 
       setTimeout(() => {
-        successIcon.style.display = 'none';
-        copyIcon.style.display = 'inline-flex';
+        this.classList.remove('copied');
+        this.querySelector('.copy-icon').innerHTML = `
+          <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="9" y="9" width="10" height="10" rx="2"></rect>
+            <path d="M5 15V7a2 2 0 0 1 2-2h8"></path>
+          </svg>
+        `;
       }, 1200);
     } catch (err) {
       console.error('Copy failed', err);
