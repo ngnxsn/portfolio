@@ -376,15 +376,73 @@ html.__ed-mode .p-card .thumb img[src=""]+.thumb-empty{display:grid}
       <a href="#experience">Experience</a>
       <a href="#contact">Contact</a>
     </div>
-    <a href="#" class="nav-phone" id="copyPhone">0946 831 748</a>
+   
+    <a href="#" class="copy-phone" data-phone="0946831748">
+  <span class="phone-text">0946 831 748</span>
+
+  <span class="icon-copy">
+    <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="9" y="9" width="10" height="10" rx="2"></rect>
+      <path d="M5 15V7a2 2 0 0 1 2-2h8"></path>
+    </svg>
+  </span>
+
+  <span class="icon-success" style="display:none;">
+    <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M20 6L9 17l-5-5"></path>
+    </svg>
+  </span>
+</a>
+
+<style>
+  .copy-phone {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
+  }
+
+  .copy-phone svg {
+    display: block;
+  }
+
+  .icon-copy,
+  .icon-success {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .icon-success {
+    color: #16a34a;
+  }
+</style>
 
 <script>
-  document.getElementById('copyPhone').addEventListener('click', function(e) {
+  document.querySelector('.copy-phone').addEventListener('click', async function(e) {
     e.preventDefault();
-    navigator.clipboard.writeText('0946831748');
-    alert('Đã copy số điện thoại');
+
+    const phone = this.dataset.phone;
+    const copyIcon = this.querySelector('.icon-copy');
+    const successIcon = this.querySelector('.icon-success');
+
+    try {
+      await navigator.clipboard.writeText(phone);
+      copyIcon.style.display = 'none';
+      successIcon.style.display = 'inline-flex';
+
+      setTimeout(() => {
+        successIcon.style.display = 'none';
+        copyIcon.style.display = 'inline-flex';
+      }, 1200);
+    } catch (err) {
+      console.error('Copy failed', err);
+    }
   });
 </script>
+
 
     <a href="#contact" class="nav-cta">Let's talk <span class="dot">↗</span></a>
     <button class="nav-toggle" id="nav-toggle" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
