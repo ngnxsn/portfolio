@@ -376,9 +376,16 @@ html.__ed-mode .p-card .thumb img[src=""]+.thumb-empty{display:grid}
       <a href="#experience">Experience</a>
       <a href="#contact">Contact</a>
     </div>
-    <a href="#" class="nav-phone" onclick="navigator.clipboard.writeText('0946831748').then(() => alert('Đã copy số điện thoại')); return false;">
-  0946 831 748
-</a>
+    <a href="#" class="nav-phone" id="copyPhone">0946 831 748</a>
+
+<script>
+  document.getElementById('copyPhone').addEventListener('click', function(e) {
+    e.preventDefault();
+    navigator.clipboard.writeText('0946831748');
+    alert('Đã copy số điện thoại');
+  });
+</script>
+
     <a href="#contact" class="nav-cta">Let's talk <span class="dot">↗</span></a>
     <button class="nav-toggle" id="nav-toggle" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
   </div>
