@@ -658,6 +658,17 @@ html.__ed-mode .p-card .thumb img[src=""]+.thumb-empty{display:grid}
 
 <!-- ============= PROJECTS ============= -->
 <section id="projects" class="projects-sec" data-block="" data-block-name="Projects">
+  <style>
+    #projects .project-group + .project-group{margin-top:64px}
+    #projects .project-group-head{display:flex;align-items:end;justify-content:space-between;gap:24px;margin-bottom:24px}
+    #projects .project-group-title{margin:0;color:var(--paper);font-size:clamp(24px,3vw,34px);font-weight:600;letter-spacing:-0.025em}
+    #projects .project-group-title .serif{font-family:var(--font-serif);font-style:italic;font-weight:350;color:var(--stone-400)}
+    #projects .project-group-meta{margin:0;font-family:var(--font-mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--stone-400)}
+    @media (max-width:640px){
+      #projects .project-group + .project-group{margin-top:48px}
+      #projects .project-group-head{align-items:start;flex-direction:column;gap:8px;margin-bottom:18px}
+    }
+  </style>
   <div class="container">
     <div class="section-head">
       <div>
@@ -667,7 +678,13 @@ html.__ed-mode .p-card .thumb img[src=""]+.thumb-empty{display:grid}
       <p class="side"><span class="mini" style="color:var(--stone-400)">/ 03 — Featured</span>Kéo ngang để xem thêm. Mỗi card dẫn tới case đầy đủ trên <b style="color:var(--paper)">Behance</b> hoặc preview video trên <b style="color:var(--paper)">Google Drive</b>.</p>
     </div>
 
-    <div class="rail" id="projects-rail">
+    <div class="project-group">
+      <div class="project-group-head">
+        <h3 class="project-group-title">Thiết kế <span class="serif">hình ảnh</span></h3>
+        <p class="project-group-meta">/ 01 — Visual Design</p>
+      </div>
+
+      <div class="rail" id="projects-design-rail" data-project-rail>
       <a class="p-card" href=" https://www.behance.net/gallery/207644587/KEY-VISUAL-PROMIX" target="_blank" rel="noreferrer" data-block-name="Promix Key Visual">
         <div class="thumb">
           <img alt="Project 01 preview" src="https://raw.githubusercontent.com/ngnxsn/portfolio-old/refs/heads/main/c3d92f207644587.Y3JvcCw5NjYsNzU2LDE1NSww.png">
@@ -684,7 +701,7 @@ html.__ed-mode .p-card .thumb img[src=""]+.thumb-empty{display:grid}
       <a class="p-card" href=" https://www.behance.net/gallery/202440931/SOCIAL-MEDIA-POST-KINSHY-SPA-(updating)" target="_blank" rel="noreferrer" data-block-name="Kinshy Social Media">
         <div class="thumb">
           <img alt="Project 02 preview" src="https://raw.githubusercontent.com/ngnxsn/portfolio-old/refs/heads/main/54494d202440931.Y3JvcCwxOTk5LDE1NjQsMCwyMDc.jpg">
-          <div class="thumb-empty">Click vào ảnh<br>để upload preview</div><div class="thumb-empty">Click vào ảnh<br>để upload preview</div>
+          <div class="thumb-empty">Click vào ảnh<br>để upload preview</div>
           <span class="tag">Behance</span>
           <span class="play">↗</span>
         </div>
@@ -706,11 +723,25 @@ html.__ed-mode .p-card .thumb img[src=""]+.thumb-empty{display:grid}
           <span class="arr">→</span>
         </div>
       </a>
+      </div>
+
+      <div class="rail-progress" aria-hidden="true">
+        <span data-project-rail-bar></span>
+      </div>
+    </div>
+
+    <div class="project-group">
+      <div class="project-group-head">
+        <h3 class="project-group-title">Video <span class="serif">&amp; Motion</span></h3>
+        <p class="project-group-meta">/ 02 — Google Drive</p>
+      </div>
+
+      <div class="rail" id="projects-video-rail" data-project-rail>
 
       <a class="p-card" href="https://drive.google.com/file/d/1dMS-Tmt-FJP6dHxGPq_rnvpWat4HxwCI/preview" target="_blank" rel="noreferrer" data-block-name="Motion Graphics">
         <div class="thumb"><iframe allow="autoplay; fullscreen" allowfullscreen="" frameborder="0" loading="lazy" src="https://drive.google.com/file/d/1icpRnCXh3KxAtLzUtU10IwyHZAPHvC9J/preview" data-original-url="https://drive.google.com/file/d/1icpRnCXh3KxAtLzUtU10IwyHZAPHvC9J/preview"></iframe>
           
-          <div class="thumb-empty">Click vào ảnh<br>để upload thumbnail</div><div class="thumb-empty">Click vào ảnh<br>để upload thumbnail</div><div class="thumb-empty">Click vào ảnh<br>để upload thumbnail</div>
+          <div class="thumb-empty">Click vào ảnh<br>để upload thumbnail</div>
           <span class="tag">Drive · Video</span>
           <span class="play">▶</span>
         </div>
@@ -723,7 +754,7 @@ html.__ed-mode .p-card .thumb img[src=""]+.thumb-empty{display:grid}
       <a class="p-card" href="https://drive.google.com/file/d/1dMS-Tmt-FJP6dHxGPq_rnvpWat4HxwCI/preview" target="_blank" rel="noreferrer" data-block-name="AI Video">
         <div class="thumb"><iframe allow="autoplay; fullscreen" allowfullscreen="" frameborder="0" loading="lazy" src="https://drive.google.com/file/d/1dMS-Tmt-FJP6dHxGPq_rnvpWat4HxwCI/preview" data-original-url="https://drive.google.com/file/d/1dMS-Tmt-FJP6dHxGPq_rnvpWat4HxwCI/preview"></iframe>
           
-          <div class="thumb-empty">Click vào ảnh<br>để upload thumbnail</div><div class="thumb-empty">Click vào ảnh<br>để upload thumbnail</div><div class="thumb-empty">Click vào ảnh<br>để upload thumbnail</div>
+          <div class="thumb-empty">Click vào ảnh<br>để upload thumbnail</div>
           <span class="tag">Drive · Video</span>
           <span class="play">▶</span>
         </div>
@@ -736,7 +767,7 @@ html.__ed-mode .p-card .thumb img[src=""]+.thumb-empty{display:grid}
       <a class="p-card" href="https://drive.google.com/file/d/1v0b6pgeRffRUtNHWtE4Jce6MIQYFpax-/preview" target="_blank" rel="noreferrer" data-block-name="Ads Video">
         <div class="thumb"><iframe allow="autoplay; fullscreen" allowfullscreen="" frameborder="0" loading="lazy" src="https://drive.google.com/file/d/1v0b6pgeRffRUtNHWtE4Jce6MIQYFpax-/preview" data-original-url="https://drive.google.com/file/d/1v0b6pgeRffRUtNHWtE4Jce6MIQYFpax-/preview"></iframe>
           
-          <div class="thumb-empty">Click vào ảnh<br>để upload thumbnail</div><div class="thumb-empty">Click vào ảnh<br>để upload thumbnail</div><div class="thumb-empty">Click vào ảnh<br>để upload thumbnail</div><div class="thumb-empty">Click vào ảnh<br>để upload thumbnail</div><div class="thumb-empty">Click vào ảnh<br>để upload thumbnail</div><div class="thumb-empty">Click vào ảnh<br>để upload thumbnail</div><div class="thumb-empty">Click vào ảnh<br>để upload thumbnail</div><div class="thumb-empty">Click vào ảnh<br>để upload thumbnail</div>
+          <div class="thumb-empty">Click vào ảnh<br>để upload thumbnail</div>
           <span class="tag">Drive · Video</span>
           <span class="play">▶</span>
         </div>
@@ -748,7 +779,7 @@ html.__ed-mode .p-card .thumb img[src=""]+.thumb-empty{display:grid}
        <a class="p-card" href="https://drive.google.com/file/d/1QqieOC1Q-eSSw2JJIRzCdJuMXrYXyJ2C/preview" target="_blank" rel="noreferrer" data-block-name="Animation">
         <div class="thumb"><iframe allow="autoplay; fullscreen" allowfullscreen="" frameborder="0" loading="lazy" src="https://drive.google.com/file/d/1QqieOC1Q-eSSw2JJIRzCdJuMXrYXyJ2C/preview" data-original-url="https://drive.google.com/file/d/1QqieOC1Q-eSSw2JJIRzCdJuMXrYXyJ2C/preview"></iframe>
           
-          <div class="thumb-empty">Click vào ảnh<br>để upload thumbnail</div><div class="thumb-empty">Click vào ảnh<br>để upload thumbnail</div><div class="thumb-empty">Click vào ảnh<br>để upload thumbnail</div><div class="thumb-empty">Click vào ảnh<br>để upload thumbnail</div><div class="thumb-empty">Click vào ảnh<br>để upload thumbnail</div><div class="thumb-empty">Click vào ảnh<br>để upload thumbnail</div><div class="thumb-empty">Click vào ảnh<br>để upload thumbnail</div><div class="thumb-empty">Click vào ảnh<br>để upload thumbnail</div>
+          <div class="thumb-empty">Click vào ảnh<br>để upload thumbnail</div>
           <span class="tag">Drive · Video</span>
           <span class="play">▶</span>
         </div>
@@ -760,7 +791,7 @@ html.__ed-mode .p-card .thumb img[src=""]+.thumb-empty{display:grid}
       <a class="p-card" href="https://drive.google.com/file/d/1dnonvdYkAF2kVo0ZVqyy6Q_JfR18wMC_/preview" target="_blank" rel="noreferrer" data-block-name="Short Video">
         <div class="thumb"><iframe allow="autoplay; fullscreen" allowfullscreen="" frameborder="0" loading="lazy" src="https://drive.google.com/file/d/1dnonvdYkAF2kVo0ZVqyy6Q_JfR18wMC_/preview" data-original-url="https://drive.google.com/file/d/1dnonvdYkAF2kVo0ZVqyy6Q_JfR18wMC_/preview"></iframe>
           
-          <div class="thumb-empty">Click vào ảnh<br>để upload thumbnail</div><div class="thumb-empty">Click vào ảnh<br>để upload thumbnail</div><div class="thumb-empty">Click vào ảnh<br>để upload thumbnail</div><div class="thumb-empty">Click vào ảnh<br>để upload thumbnail</div><div class="thumb-empty">Click vào ảnh<br>để upload thumbnail</div><div class="thumb-empty">Click vào ảnh<br>để upload thumbnail</div><div class="thumb-empty">Click vào ảnh<br>để upload thumbnail</div><div class="thumb-empty">Click vào ảnh<br>để upload thumbnail</div>
+          <div class="thumb-empty">Click vào ảnh<br>để upload thumbnail</div>
           <span class="tag">Drive · Video</span>
           <span class="play">▶</span>
         </div>
@@ -772,7 +803,7 @@ html.__ed-mode .p-card .thumb img[src=""]+.thumb-empty{display:grid}
        <a class="p-card" href="https://drive.google.com/file/d/1KUADlmt8M-s90tR4PA97dSz3zbXitJx5/preview" target="_blank" rel="noreferrer" data-block-name="Product Showcase">
         <div class="thumb"><iframe allow="autoplay; fullscreen" allowfullscreen="" frameborder="0" loading="lazy" src="https://drive.google.com/file/d/1KUADlmt8M-s90tR4PA97dSz3zbXitJx5/preview" data-original-url="https://drive.google.com/file/d/1KUADlmt8M-s90tR4PA97dSz3zbXitJx5/preview"></iframe>
           
-          <div class="thumb-empty">Click vào ảnh<br>để upload thumbnail</div><div class="thumb-empty">Click vào ảnh<br>để upload thumbnail</div><div class="thumb-empty">Click vào ảnh<br>để upload thumbnail</div><div class="thumb-empty">Click vào ảnh<br>để upload thumbnail</div><div class="thumb-empty">Click vào ảnh<br>để upload thumbnail</div><div class="thumb-empty">Click vào ảnh<br>để upload thumbnail</div><div class="thumb-empty">Click vào ảnh<br>để upload thumbnail</div><div class="thumb-empty">Click vào ảnh<br>để upload thumbnail</div>
+          <div class="thumb-empty">Click vào ảnh<br>để upload thumbnail</div>
           <span class="tag">Drive · Video</span>
           <span class="play">▶</span>
         </div>
@@ -784,7 +815,7 @@ html.__ed-mode .p-card .thumb img[src=""]+.thumb-empty{display:grid}
       <a class="p-card" href=" https://drive.google.com/file/d/1ExoBPFUP4VziJtgQU2BHig1pAqRibQqz/preview" target="_blank" rel="noreferrer" data-block-name="Collage Animation · copy">
         <div class="thumb"><iframe allow="autoplay; fullscreen" allowfullscreen="" frameborder="0" loading="lazy" src="https://drive.google.com/file/d/1ExoBPFUP4VziJtgQU2BHig1pAqRibQqz/preview" data-original-url=" https://drive.google.com/file/d/1ExoBPFUP4VziJtgQU2BHig1pAqRibQqz/preview"></iframe>
           
-          <div class="thumb-empty">Click vào ảnh<br>để upload thumbnail</div><div class="thumb-empty">Click vào ảnh<br>để upload thumbnail</div><div class="thumb-empty">Click vào ảnh<br>để upload thumbnail</div><div class="thumb-empty">Click vào ảnh<br>để upload thumbnail</div><div class="thumb-empty">Click vào ảnh<br>để upload thumbnail</div><div class="thumb-empty">Click vào ảnh<br>để upload thumbnail</div><div class="thumb-empty">Click vào ảnh<br>để upload thumbnail</div><div class="thumb-empty">Click vào ảnh<br>để upload thumbnail</div>
+          <div class="thumb-empty">Click vào ảnh<br>để upload thumbnail</div>
           <span class="tag">Drive · Video</span>
           <span class="play">▶</span>
         </div>
@@ -795,8 +826,39 @@ html.__ed-mode .p-card .thumb img[src=""]+.thumb-empty{display:grid}
       </a>
     </div>
 
-    <div class="rail-progress" aria-hidden="true"><span id="projects-rail-bar" style="width: 57.09%; left: 33.62%;"></span></div>
+      <div class="rail-progress" aria-hidden="true">
+        <span data-project-rail-bar></span>
+      </div>
+    </div>
   </div>
+
+  <script>
+    (() => {
+      document.querySelectorAll('#projects [data-project-rail]').forEach((rail) => {
+        const bar = rail.nextElementSibling?.querySelector('[data-project-rail-bar]');
+        if (!bar) return;
+
+        const updateProgress = () => {
+          const total = rail.scrollWidth;
+          const view = rail.clientWidth;
+          const max = total - view;
+          const width = total > 0
+            ? Math.max(8, Math.min(100, (view / total) * 100))
+            : 100;
+          const left = max > 0
+            ? (rail.scrollLeft / max) * (100 - width)
+            : 0;
+
+          bar.style.width = `${width.toFixed(2)}%`;
+          bar.style.left = `${left.toFixed(2)}%`;
+        };
+
+        rail.addEventListener('scroll', updateProgress, { passive: true });
+        window.addEventListener('resize', updateProgress);
+        requestAnimationFrame(updateProgress);
+      });
+    })();
+  </script>
 </section>
 
 <!-- ============= TOOLS ============= -->
