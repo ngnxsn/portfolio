@@ -66,6 +66,7 @@ button{font:inherit;cursor:pointer}
 .nav-m-link{display:block;padding:14px 0;font-size:20px;font-weight:600;color:var(--paper);letter-spacing:-0.025em;border-bottom:1px solid rgba(255,255,255,0.07);transition:color .15s,padding-left .15s}
 .nav-m-link:last-child{border-bottom:none}
 .nav-m-link:hover{color:var(--mustard);padding-left:6px}
+.nav-backdrop{display:none}
 
 /* ============= HERO ============= */
 .hero{padding:56px 0 96px;position:relative}
@@ -377,13 +378,14 @@ html.__ed-mode .p-card .thumb img[src=""]+.thumb-empty{display:grid}
     max-height:calc(100dvh - 88px);
     padding:14px 0 20px;
     overflow-y:auto;
-    background:rgba(251,249,245,.86);
+    z-index:3;
+    background:rgba(251,249,245,.95);
     border-top:1px solid rgba(20,17,12,.06);
     border-bottom:1px solid rgba(20,17,12,.08);
     border-radius:0 0 24px 24px;
     box-shadow:0 24px 60px rgba(20,17,12,.14);
-    backdrop-filter:blur(36px) saturate(1.15);
-    -webkit-backdrop-filter:blur(36px) saturate(1.15);
+    backdrop-filter:blur(44px) saturate(1.05);
+    -webkit-backdrop-filter:blur(44px) saturate(1.05);
     opacity:0;
     visibility:hidden;
     pointer-events:none;
@@ -395,6 +397,27 @@ html.__ed-mode .p-card .thumb img[src=""]+.thumb-empty{display:grid}
     visibility:visible;
     pointer-events:auto;
     transform:translateY(0);
+  }
+  .nav-backdrop{
+    display:block;
+    position:fixed;
+    z-index:2;
+    top:72px;
+    left:0;
+    right:0;
+    bottom:0;
+    background:rgba(251,249,245,.28);
+    backdrop-filter:blur(16px);
+    -webkit-backdrop-filter:blur(16px);
+    opacity:0;
+    visibility:hidden;
+    pointer-events:none;
+    transition:opacity .25s var(--ease-out),visibility .25s;
+  }
+  body.menu-open .nav-backdrop{
+    opacity:1;
+    visibility:visible;
+    pointer-events:auto;
   }
   .nav-mobile .container{
     width:100%;
@@ -594,6 +617,7 @@ html.__ed-mode .p-card .thumb img[src=""]+.thumb-empty{display:grid}
       <a href="#contact" class="nav-m-link">Contact</a>
     </div>
   </div>
+  <div class="nav-backdrop" id="nav-backdrop" aria-hidden="true"></div>
 </nav>
 
 <!-- ============= HERO ============= -->
@@ -1248,7 +1272,8 @@ html.__ed-mode .p-card .thumb img[src=""]+.thumb-empty{display:grid}
   (function(){
     const btn=document.getElementById('nav-toggle');
     const menu=document.getElementById('nav-mobile');
-    if(!btn||!menu) return;
+    const backdrop=document.getElementById('nav-backdrop');
+    if(!btn||!menu||!backdrop) return;
     function setOpen(open){
       menu.classList.toggle('is-open',open);
       btn.classList.toggle('is-open',open);
@@ -1264,15 +1289,15 @@ html.__ed-mode .p-card .thumb img[src=""]+.thumb-empty{display:grid}
     menu.querySelectorAll('a').forEach(a=>{
       a.addEventListener('click',()=>setOpen(false));
     });
-    menu.addEventListener('click',e=>{
-      if(e.target===menu) setOpen(false);
-    });
-    document.addEventListener('pointerdown',e=>{
-      if(!menu.classList.contains('is-open')) return;
-      if(menu.contains(e.target)||btn.contains(e.target)) return;
+    backdrop.addEventListener('pointerdown',e=>{
       e.preventDefault();
+      e.stopPropagation();
       setOpen(false);
-    },true);
+    });
+    backdrop.addEventListener('click',e=>{
+      e.preventDefault();
+      e.stopPropagation();
+    });
     document.addEventListener('keydown',e=>{
       if(e.key==='Escape') setOpen(false);
     });
