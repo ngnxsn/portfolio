@@ -370,7 +370,8 @@ html.__ed-mode .p-card .thumb img[src=""]+.thumb-empty{display:grid}
   .nav-toggle{display:block}
   .nav-mobile{
     display:flex;
-    position:absolute;
+    position:fixed;
+    z-index:49;
     top:72px;
     left:0;
     right:0;
@@ -378,7 +379,6 @@ html.__ed-mode .p-card .thumb img[src=""]+.thumb-empty{display:grid}
     max-height:calc(100dvh - 88px);
     padding:14px 0 20px;
     overflow-y:auto;
-    z-index:3;
     background:rgba(251,249,245,.80);
     border-top:1px solid rgba(20,17,12,.06);
     border-bottom:1px solid rgba(20,17,12,.08);
@@ -401,7 +401,7 @@ html.__ed-mode .p-card .thumb img[src=""]+.thumb-empty{display:grid}
   .nav-backdrop{
     display:block;
     position:fixed;
-    z-index:49;
+    z-index:48;
     top:72px;
     left:0;
     right:0;
@@ -608,16 +608,16 @@ html.__ed-mode .p-card .thumb img[src=""]+.thumb-empty{display:grid}
     <a href="#contact" class="nav-cta">Let's talk <span class="dot">↗</span></a>
     <button class="nav-toggle" id="nav-toggle" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
   </div>
-  <div class="nav-mobile" id="nav-mobile" aria-hidden="true">
-    <div class="container">
-      <a href="#about" class="nav-m-link">About</a>
-      <a href="#strength" class="nav-m-link">Strength</a>
-      <a href="#tools" class="nav-m-link">Tools</a>
-      <a href="#experience" class="nav-m-link">Experience</a>
-      <a href="#contact" class="nav-m-link">Contact</a>
-    </div>
-  </div>
 </nav>
+<div class="nav-mobile" id="nav-mobile" aria-hidden="true">
+  <div class="container">
+    <a href="#about" class="nav-m-link">About</a>
+    <a href="#strength" class="nav-m-link">Strength</a>
+    <a href="#tools" class="nav-m-link">Tools</a>
+    <a href="#experience" class="nav-m-link">Experience</a>
+    <a href="#contact" class="nav-m-link">Contact</a>
+  </div>
+</div>
 <div class="nav-backdrop" id="nav-backdrop" aria-hidden="true"></div>
 
 <!-- ============= HERO ============= -->
