@@ -324,9 +324,41 @@ html.__ed-mode .p-card .thumb img[src=""]+.thumb-empty{display:grid}
 /* ============= RESPONSIVE ============= */
 @media (max-width:1080px){
   .hero-grid{grid-template-columns:1fr;gap:64px}
-  .hero-visual{min-height:auto}
-  .portrait-tile{position:relative;right:auto;top:auto;margin:20px 0 0 auto;transform:rotate(2deg)}
-  .sticker{left:auto;right:20px;top:-40px;bottom:auto}
+  .hero-visual{
+    min-height:0;
+    display:grid;
+    grid-template-columns:minmax(0,1fr) minmax(220px,.42fr);
+    gap:18px;
+    align-items:start;
+  }
+  .hero-visual .card-big,
+  .hero-visual .stat-strip{grid-column:1/-1;width:100%;margin:0}
+  .hero-visual .tilt-card{
+    grid-column:1/-1;
+    grid-row:3;
+    width:100%;
+    max-width:none;
+    min-height:250px;
+    margin:10px 0 18px;
+    padding:38px 300px 38px 42px;
+    transform:rotate(-.7deg);
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+  }
+  .hero-visual .portrait-tile{
+    grid-column:2;
+    grid-row:3;
+    position:relative;
+    inset:auto;
+    width:220px;
+    max-width:100%;
+    margin:-4px 18px 0 auto;
+    align-self:center;
+    z-index:3;
+    transform:rotate(1.8deg);
+  }
+  .hero-visual .sticker{display:none}
   .section-head{grid-template-columns:1fr;gap:24px}
   .tools-grid{grid-template-columns:1fr 1fr}
   .tools-grid .t-card:last-child{grid-column:1/-1}
@@ -354,8 +386,65 @@ html.__ed-mode .p-card .thumb img[src=""]+.thumb-empty{display:grid}
   .exp-row .arr{justify-self:end}
   .about-card,.touch-card{padding:28px}
   .section-head h2{font-size:clamp(32px,9vw,48px)}
-  .hero-visual{padding-top:16px}
-  .portrait-tile{width:200px}
+  .hero-visual{
+    min-height:0;
+    padding-top:16px;
+    display:grid;
+    grid-template-columns:minmax(0,1fr) minmax(128px,.42fr);
+    gap:12px;
+    align-items:start;
+  }
+  .hero-visual .card-big,
+  .hero-visual .stat-strip{grid-column:1/-1;width:100%;margin:0}
+  .hero-visual .card-big{padding:18px 18px 16px}
+  .hero-visual .big-num{font-size:clamp(60px,20vw,82px)}
+  .hero-visual .sticker{display:none}
+  .hero-visual .stat-strip{
+    padding:16px 14px;
+    grid-template-columns:repeat(3,minmax(0,1fr));
+  }
+  .hero-visual .stat-strip .i{min-width:0;padding-right:10px}
+  .hero-visual .stat-strip .i+.i{padding-left:10px}
+  .hero-visual .stat-strip small{font-size:8px;line-height:1.45;letter-spacing:.08em}
+  .hero-visual .stat-strip b{font-size:clamp(14px,4vw,18px);line-height:1.2}
+  .hero-visual .tilt-card{
+    grid-column:1/-1;
+    grid-row:3;
+    width:100%;
+    max-width:none;
+    min-height:220px;
+    margin:8px 0 14px;
+    padding:28px 44% 28px 22px;
+    transform:rotate(-.8deg);
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+  }
+  .hero-visual .tilt-card .big{font-size:clamp(42px,13vw,56px)}
+  .hero-visual .portrait-tile{
+    grid-column:2;
+    grid-row:3;
+    position:relative;
+    inset:auto;
+    width:100%;
+    max-width:190px;
+    margin:0 10px 0 auto;
+    align-self:center;
+    z-index:3;
+    transform:rotate(1.8deg);
+  }
+}
+@media (max-width:420px){
+  .hero-visual{gap:10px;grid-template-columns:minmax(0,1fr) minmax(112px,.46fr)}
+  .hero-visual .stat-strip{padding:14px 10px}
+  .hero-visual .stat-strip .i{padding-right:7px}
+  .hero-visual .stat-strip .i+.i{padding-left:7px}
+  .hero-visual .stat-strip b{font-size:14px}
+  .hero-visual .tilt-card{min-height:190px;padding:22px 46% 22px 16px}
+  .hero-visual .tilt-card .lab{font-size:8px}
+  .hero-visual .tilt-card .big{font-size:clamp(36px,12vw,46px)}
+  .hero-visual .tilt-card .sub{font-size:8px;letter-spacing:.06em}
+  .hero-visual .portrait-tile{margin-right:6px}
 }
 </style>
 </head>
