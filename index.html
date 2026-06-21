@@ -379,13 +379,13 @@ html.__ed-mode .p-card .thumb img[src=""]+.thumb-empty{display:grid}
     padding:14px 0 20px;
     overflow-y:auto;
     z-index:3;
-    background:rgba(251,249,245,.95);
+    background:rgba(251,249,245,.90);
     border-top:1px solid rgba(20,17,12,.06);
     border-bottom:1px solid rgba(20,17,12,.08);
     border-radius:0 0 24px 24px;
     box-shadow:0 24px 60px rgba(20,17,12,.14);
-    backdrop-filter:blur(44px) saturate(1.05);
-    -webkit-backdrop-filter:blur(44px) saturate(1.05);
+    backdrop-filter:blur(64px) saturate(.95);
+    -webkit-backdrop-filter:blur(64px) saturate(.95);
     opacity:0;
     visibility:hidden;
     pointer-events:none;
@@ -401,14 +401,14 @@ html.__ed-mode .p-card .thumb img[src=""]+.thumb-empty{display:grid}
   .nav-backdrop{
     display:block;
     position:fixed;
-    z-index:2;
+    z-index:49;
     top:72px;
     left:0;
     right:0;
     bottom:0;
-    background:rgba(251,249,245,.28);
-    backdrop-filter:blur(16px);
-    -webkit-backdrop-filter:blur(16px);
+    background:rgba(251,249,245,.18);
+    backdrop-filter:blur(28px);
+    -webkit-backdrop-filter:blur(28px);
     opacity:0;
     visibility:hidden;
     pointer-events:none;
@@ -617,8 +617,8 @@ html.__ed-mode .p-card .thumb img[src=""]+.thumb-empty{display:grid}
       <a href="#contact" class="nav-m-link">Contact</a>
     </div>
   </div>
-  <div class="nav-backdrop" id="nav-backdrop" aria-hidden="true"></div>
 </nav>
+<div class="nav-backdrop" id="nav-backdrop" aria-hidden="true"></div>
 
 <!-- ============= HERO ============= -->
 <header class="hero" data-block="" data-block-name="Hero" style="">
@@ -1289,14 +1289,11 @@ html.__ed-mode .p-card .thumb img[src=""]+.thumb-empty{display:grid}
     menu.querySelectorAll('a').forEach(a=>{
       a.addEventListener('click',()=>setOpen(false));
     });
-    backdrop.addEventListener('pointerdown',e=>{
-      e.preventDefault();
-      e.stopPropagation();
-      setOpen(false);
-    });
     backdrop.addEventListener('click',e=>{
       e.preventDefault();
       e.stopPropagation();
+      e.stopImmediatePropagation();
+      setOpen(false);
     });
     document.addEventListener('keydown',e=>{
       if(e.key==='Escape') setOpen(false);
