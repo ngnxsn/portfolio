@@ -753,6 +753,10 @@ html.__ed-mode .p-card .thumb img[src=""]+.thumb-empty{display:grid}
     #projects .project-group-title{margin:0;color:var(--paper);font-size:clamp(24px,3vw,34px);font-weight:600;letter-spacing:-0.025em}
     #projects .project-group-title .serif{font-family:var(--font-serif);font-style:italic;font-weight:350;color:var(--stone-400)}
     #projects .project-group-meta{margin:0;font-family:var(--font-mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--stone-400)}
+    #projects .project-group-more{display:inline-flex;align-items:center;gap:12px;padding:8px 8px 8px 16px;border:1px solid rgba(255,255,255,.16);border-radius:999px;color:var(--stone-400);font-family:var(--font-mono);font-size:10.5px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;transition:color .25s,border-color .25s,transform .25s}
+    #projects .project-group-more::after{content:"↗";width:28px;height:28px;border-radius:50%;display:grid;place-items:center;background:var(--mustard);color:var(--ink);font-family:var(--font-sans);font-size:13px;transition:transform .25s var(--ease-out)}
+    #projects .project-group-more:hover{color:var(--paper);border-color:var(--mustard);transform:translateY(-2px)}
+    #projects .project-group-more:hover::after{transform:rotate(45deg)}
     #projects-video-rail .thumb{aspect-ratio:11/10;background:#0a0907}
     @media (max-width:640px){
       #projects .project-group + .project-group{margin-top:48px}
@@ -771,7 +775,7 @@ html.__ed-mode .p-card .thumb img[src=""]+.thumb-empty{display:grid}
     <div class="project-group">
       <div class="project-group-head">
         <h3 class="project-group-title">Thiết kế <span class="serif">hình ảnh</span></h3>
-        <p class="project-group-meta">/ 01 — Visual Design</p>
+        <a class="project-group-more" href="https://www.behance.net/ngnxsn" target="_blank" rel="noopener noreferrer" aria-label="Xem thêm dự án thiết kế trên Behance">Xem thêm</a>
       </div>
 
       <div class="rail" id="projects-design-rail" data-project-rail>
@@ -823,7 +827,7 @@ html.__ed-mode .p-card .thumb img[src=""]+.thumb-empty{display:grid}
     <div class="project-group">
       <div class="project-group-head">
         <h3 class="project-group-title">Video <span class="serif">&amp; Motion</span></h3>
-        <p class="project-group-meta">/ 02 — Google Drive</p>
+        <a class="project-group-more" href="https://drive.google.com/drive/u/0/folders/145hVumg8fH9oSXpE4T6IYwBedtU7xFmv" target="_blank" rel="noopener noreferrer" aria-label="Xem thêm video trên Google Drive">Xem thêm</a>
       </div>
 
       <div class="rail" id="projects-video-rail" data-project-rail>
