@@ -856,12 +856,16 @@ html.__ed-mode .p-card .thumb img[src=""]+.thumb-empty{display:grid}
     body.video-open{overflow:hidden}
     #projects .video-modal{position:fixed;inset:0;z-index:90;display:grid;place-items:center;padding:24px;background:rgba(10,9,7,.76);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);opacity:0;visibility:hidden;pointer-events:none;transition:opacity .25s,visibility .25s}
     #projects .video-modal.is-open{opacity:1;visibility:visible;pointer-events:auto}
-    #projects .video-modal-box{width:min(1040px,100%);background:rgba(31,28,22,.92);border:1px solid rgba(255,255,255,.12);border-radius:24px;overflow:hidden;box-shadow:0 30px 90px rgba(0,0,0,.45)}
+    #projects .video-modal-box{width:min(1280px,calc(100vw - 112px));background:rgba(31,28,22,.92);border:1px solid rgba(255,255,255,.12);border-radius:24px;overflow:hidden;box-shadow:0 30px 90px rgba(0,0,0,.45)}
     #projects .video-modal-head{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:16px 18px;border-bottom:1px solid rgba(255,255,255,.08)}
     #projects .video-modal-title{margin:0;color:var(--paper);font-size:16px;font-weight:600}
     #projects .video-modal-close{width:38px;height:38px;border:1px solid rgba(255,255,255,.14);border-radius:50%;background:rgba(255,255,255,.06);color:var(--paper);font-size:22px;line-height:1;cursor:pointer}
-    #projects .video-modal-frame{aspect-ratio:16/9;background:#050403}
+    #projects .video-modal-frame{aspect-ratio:auto;height:min(76vh,760px);background:#050403}
     #projects .video-modal-frame iframe{width:100%;height:100%;border:0;display:block}
+    #projects .video-modal-nav{position:absolute;top:50%;z-index:2;width:54px;height:54px;border-radius:50%;border:1px solid rgba(255,255,255,.16);background:rgba(31,28,22,.72);color:var(--paper);display:grid;place-items:center;font-size:28px;line-height:1;cursor:pointer;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);transition:background .25s,transform .25s,color .25s}
+    #projects .video-modal-nav:hover{background:var(--mustard);color:var(--ink);transform:translateY(-50%) scale(1.05)}
+    #projects .video-modal-prev{left:24px;transform:translateY(-50%)}
+    #projects .video-modal-next{right:24px;transform:translateY(-50%)}
     @media (max-width:640px){
       #projects .project-group + .project-group{margin-top:48px}
       #projects .project-group-head{align-items:center;flex-direction:row;gap:12px;margin-bottom:18px}
@@ -872,8 +876,14 @@ html.__ed-mode .p-card .thumb img[src=""]+.thumb-empty{display:grid}
       #projects .rail::-webkit-scrollbar{display:none}
       #projects .video-filter{gap:8px;margin-top:-2px;padding-bottom:16px}
       #projects .video-filter-btn{padding:8px 12px;font-size:9px}
-      #projects .video-modal{padding:14px}
-      #projects .video-modal-box{border-radius:18px}
+      #projects .video-modal{padding:12px;align-items:center}
+      #projects .video-modal-box{width:100%;border-radius:18px}
+      #projects .video-modal-head{padding:14px 16px}
+      #projects .video-modal-title{font-size:18px}
+      #projects .video-modal-frame{aspect-ratio:auto;height:min(70vh,620px)}
+      #projects .video-modal-nav{width:42px;height:42px;font-size:22px;background:rgba(31,28,22,.6)}
+      #projects .video-modal-prev{left:8px}
+      #projects .video-modal-next{right:8px}
     }
   </style>
   <div class="container">
@@ -1106,7 +1116,7 @@ html.__ed-mode .p-card .thumb img[src=""]+.thumb-empty{display:grid}
           <span class="play">▶</span>
         </div>
         <div class="body">
-          <div><h4>Trắng 15</h4><p>Xem preview trên website</p></div>
+          <div><h4>Công Nghệ Trắng</h4><p>Xem preview trên website</p></div>
           <span class="arr">→</span>
         </div>
       </button>
@@ -1118,7 +1128,7 @@ html.__ed-mode .p-card .thumb img[src=""]+.thumb-empty{display:grid}
           <span class="play">▶</span>
         </div>
         <div class="body">
-          <div><h4>Evie Sean Animation</h4><p>Xem preview trên website</p></div>
+          <div><h4>Children Day Animation</h4><p>Xem preview trên website</p></div>
           <span class="arr">→</span>
         </div>
       </button>
@@ -1142,7 +1152,7 @@ html.__ed-mode .p-card .thumb img[src=""]+.thumb-empty{display:grid}
           <span class="play">▶</span>
         </div>
         <div class="body">
-          <div><h4>DHA Evie Short</h4><p>Xem preview trên website</p></div>
+          <div><h4>DHA Short Video</h4><p>Xem preview trên website</p></div>
           <span class="arr">→</span>
         </div>
       </button>
@@ -1213,6 +1223,8 @@ html.__ed-mode .p-card .thumb img[src=""]+.thumb-empty{display:grid}
   </div>
 
   <div class="video-modal" id="video-modal" aria-hidden="true">
+    <button class="video-modal-nav video-modal-prev" type="button" aria-label="Video trước">‹</button>
+    <button class="video-modal-nav video-modal-next" type="button" aria-label="Video tiếp theo">›</button>
     <div class="video-modal-box" role="dialog" aria-modal="true" aria-labelledby="video-modal-title">
       <div class="video-modal-head">
         <p class="video-modal-title" id="video-modal-title">Video preview</p>
@@ -1258,6 +1270,9 @@ html.__ed-mode .p-card .thumb img[src=""]+.thumb-empty{display:grid}
       const modalTitle = document.getElementById('video-modal-title');
       const modalFrame = document.getElementById('video-modal-frame');
       const modalClose = modal?.querySelector('.video-modal-close');
+      const modalPrev = modal?.querySelector('.video-modal-prev');
+      const modalNext = modal?.querySelector('.video-modal-next');
+      let currentVideoCard = null;
 
       const refreshRails = () => {
         requestAnimationFrame(() => updateRailFns.forEach((fn) => fn()));
@@ -1276,11 +1291,14 @@ html.__ed-mode .p-card .thumb img[src=""]+.thumb-empty{display:grid}
         });
       });
 
+      const getVisibleVideoCards = () => [...videoCards].filter((card) => !card.hidden);
+
       const closeVideo = () => {
         if (!modal || !modalFrame) return;
         modal.classList.remove('is-open');
         modal.setAttribute('aria-hidden', 'true');
         modalFrame.innerHTML = '';
+        currentVideoCard = null;
         document.body.classList.remove('video-open');
       };
 
@@ -1288,6 +1306,7 @@ html.__ed-mode .p-card .thumb img[src=""]+.thumb-empty{display:grid}
         if (!modal || !modalFrame || !modalTitle) return;
         const src = card.dataset.videoSrc;
         if (!src) return;
+        currentVideoCard = card;
         modalTitle.textContent = card.dataset.videoTitle || 'Video preview';
         modalFrame.innerHTML = `<iframe src="${src}" allow="autoplay; fullscreen; encrypted-media; picture-in-picture" allowfullscreen loading="lazy"></iframe>`;
         modal.classList.add('is-open');
@@ -1295,16 +1314,34 @@ html.__ed-mode .p-card .thumb img[src=""]+.thumb-empty{display:grid}
         document.body.classList.add('video-open');
       };
 
+      const stepVideo = (direction) => {
+        const cards = getVisibleVideoCards();
+        if (!cards.length) return;
+        const currentIndex = Math.max(0, cards.indexOf(currentVideoCard));
+        const nextIndex = (currentIndex + direction + cards.length) % cards.length;
+        openVideo(cards[nextIndex]);
+      };
+
       videoCards.forEach((card) => {
         card.addEventListener('click', () => openVideo(card));
       });
 
       modalClose?.addEventListener('click', closeVideo);
+      modalPrev?.addEventListener('click', (event) => {
+        event.stopPropagation();
+        stepVideo(-1);
+      });
+      modalNext?.addEventListener('click', (event) => {
+        event.stopPropagation();
+        stepVideo(1);
+      });
       modal?.addEventListener('click', (event) => {
         if (event.target === modal) closeVideo();
       });
       window.addEventListener('keydown', (event) => {
         if (event.key === 'Escape') closeVideo();
+        if (modal?.classList.contains('is-open') && event.key === 'ArrowLeft') stepVideo(-1);
+        if (modal?.classList.contains('is-open') && event.key === 'ArrowRight') stepVideo(1);
       });
     })();
   </script>
