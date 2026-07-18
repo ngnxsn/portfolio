@@ -843,12 +843,35 @@ html.__ed-mode .p-card .thumb img[src=""]+.thumb-empty{display:grid}
     #projects .project-group-more:hover{color:var(--paper);border-color:var(--mustard);transform:translateY(-2px)}
     #projects .project-group-more:hover::after{transform:rotate(-45deg)}
     #projects-video-rail .thumb{aspect-ratio:11/10;background:#0a0907}
+    #projects .video-filter{display:flex;gap:10px;overflow-x:auto;padding:2px 0 18px;margin:-6px 0 8px;scrollbar-width:none}
+    #projects .video-filter::-webkit-scrollbar{display:none}
+    #projects .video-filter-btn{flex:0 0 auto;border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.035);color:var(--stone-400);border-radius:999px;padding:9px 14px;font-family:var(--font-mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;cursor:pointer;transition:background .25s,border-color .25s,color .25s,transform .25s}
+    #projects .video-filter-btn:hover,#projects .video-filter-btn.is-active{background:var(--mustard);border-color:var(--mustard);color:var(--ink);transform:translateY(-1px)}
+    #projects .video-card{border:0;text-align:left;color:inherit;font:inherit;cursor:pointer;width:100%;appearance:none;-webkit-appearance:none}
+    #projects .video-card[hidden]{display:none}
+    #projects .video-card .thumb img{z-index:1}
+    #projects .video-card .thumb::after{z-index:1;background:linear-gradient(180deg,rgba(0,0,0,.12),rgba(0,0,0,.58))}
+    #projects .video-card .play{display:grid;width:52px;height:52px;left:50%;right:auto;top:50%;transform:translate(-50%,-50%);font-size:16px;background:rgba(255,255,255,.78);color:var(--ink);backdrop-filter:blur(12px)}
+    #projects .video-card:hover .play{background:var(--mustard);transform:translate(-50%,-50%) scale(1.06)}
+    body.video-open{overflow:hidden}
+    #projects .video-modal{position:fixed;inset:0;z-index:90;display:grid;place-items:center;padding:24px;background:rgba(10,9,7,.76);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);opacity:0;visibility:hidden;pointer-events:none;transition:opacity .25s,visibility .25s}
+    #projects .video-modal.is-open{opacity:1;visibility:visible;pointer-events:auto}
+    #projects .video-modal-box{width:min(1040px,100%);background:rgba(31,28,22,.92);border:1px solid rgba(255,255,255,.12);border-radius:24px;overflow:hidden;box-shadow:0 30px 90px rgba(0,0,0,.45)}
+    #projects .video-modal-head{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:16px 18px;border-bottom:1px solid rgba(255,255,255,.08)}
+    #projects .video-modal-title{margin:0;color:var(--paper);font-size:16px;font-weight:600}
+    #projects .video-modal-close{width:38px;height:38px;border:1px solid rgba(255,255,255,.14);border-radius:50%;background:rgba(255,255,255,.06);color:var(--paper);font-size:22px;line-height:1;cursor:pointer}
+    #projects .video-modal-frame{aspect-ratio:16/9;background:#050403}
+    #projects .video-modal-frame iframe{width:100%;height:100%;border:0;display:block}
     @media (max-width:640px){
       #projects .project-group + .project-group{margin-top:48px}
       #projects .project-group-head{align-items:center;flex-direction:row;gap:12px;margin-bottom:18px}
       #projects .project-group-title{font-size:clamp(21px,6.4vw,28px);min-width:0}
       #projects .project-group-more{flex:0 0 auto;gap:7px;padding:6px 6px 6px 11px;font-size:8.5px;letter-spacing:.09em}
       #projects .project-group-more::after{width:24px;height:24px;font-size:12px}
+      #projects .video-filter{gap:8px;margin-top:-2px;padding-bottom:16px}
+      #projects .video-filter-btn{padding:8px 12px;font-size:9px}
+      #projects .video-modal{padding:14px}
+      #projects .video-modal-box{border-radius:18px}
     }
   </style>
   <div class="container">
@@ -857,7 +880,7 @@ html.__ed-mode .p-card .thumb img[src=""]+.thumb-empty{display:grid}
         <div class="eyebrow"><span>Featured projects</span></div>
         <h2>Một vài sản phẩm <span class="serif">nổi bật</span></h2>
       </div>
-      <p class="side"><span class="mini" style="color:var(--stone-400)">/ 03 — Featured</span>Kéo ngang để xem thêm. Mỗi card dẫn tới case đầy đủ trên <b style="color:var(--paper)">Behance</b> hoặc preview video trên <b style="color:var(--paper)">Google Drive</b>.</p>
+      <p class="side"><span class="mini" style="color:var(--stone-400)">/ 03 — Featured</span>Kéo ngang để xem thêm. Mỗi card dẫn tới case đầy đủ trên <b style="color:var(--paper)">Behance</b> hoặc mở preview video ngay trên website.</p>
     </div>
 
     <div class="project-group">
@@ -918,94 +941,267 @@ html.__ed-mode .p-card .thumb img[src=""]+.thumb-empty{display:grid}
         <a class="project-group-more" href="https://drive.google.com/drive/u/0/folders/145hVumg8fH9oSXpE4T6IYwBedtU7xFmv" target="_blank" rel="noopener noreferrer" aria-label="Xem thêm video trên Google Drive">Xem thêm</a>
       </div>
 
+      <div class="video-filter" aria-label="Lọc video theo hạng mục">
+        <button class="video-filter-btn is-active" type="button" data-video-filter="all">Tất cả</button>
+        <button class="video-filter-btn" type="button" data-video-filter="motion">Motion</button>
+        <button class="video-filter-btn" type="button" data-video-filter="ads">Ads Video</button>
+        <button class="video-filter-btn" type="button" data-video-filter="ai">AI Video</button>
+        <button class="video-filter-btn" type="button" data-video-filter="product">Product</button>
+        <button class="video-filter-btn" type="button" data-video-filter="short">Short</button>
+        <button class="video-filter-btn" type="button" data-video-filter="animation">Animation</button>
+      </div>
+
       <div class="rail" id="projects-video-rail" data-project-rail>
 
-      <a class="p-card" href="https://player.cloudinary.com/embed/?cloud_name=dlztimgay&amp;public_id=16.6-DHA_-_USP-SEAN_EVIE_gt2ktq" target="_blank" rel="noreferrer" data-block-name="Motion Graphics">
-        <div class="thumb"><iframe allow="autoplay; fullscreen; encrypted-media; picture-in-picture" allowfullscreen="" frameborder="0" loading="lazy" src="https://player.cloudinary.com/embed/?cloud_name=dlztimgay&amp;public_id=16.6-DHA_-_USP-SEAN_EVIE_gt2ktq"></iframe>
-          
-          <div class="thumb-empty">Click vào ảnh<br>để upload thumbnail</div>
+      <button class="p-card video-card" type="button" data-video-category="motion" data-video-src="https://player.cloudinary.com/embed/?cloud_name=dlztimgay&amp;public_id=16.6-DHA_-_USP-SEAN_EVIE_gt2ktq" data-video-title="DHA USP Motion" data-block-name="DHA USP Motion">
+        <div class="thumb">
+          <img alt="DHA USP Motion preview" loading="lazy" src="https://res.cloudinary.com/dlztimgay/video/upload/w_900,q_auto,f_jpg/16.6-DHA_-_USP-SEAN_EVIE_gt2ktq.jpg" onerror="this.style.display='none'">
           <span class="tag">Cloudinary · Video</span>
           <span class="play">▶</span>
         </div>
         <div class="body">
-          <div><h4>Motion Graphics</h4><p>Preview từ Cloudinary</p></div>
+          <div><h4>DHA USP Motion</h4><p>Xem preview trên website</p></div>
           <span class="arr">→</span>
         </div>
-      </a>
+      </button>
 
-      <a class="p-card" href="https://player.cloudinary.com/embed/?cloud_name=dlztimgay&amp;public_id=CAT-test_2_vwt8yr" target="_blank" rel="noreferrer" data-block-name="AI Video">
-        <div class="thumb"><iframe allow="autoplay; fullscreen; encrypted-media; picture-in-picture" allowfullscreen="" frameborder="0" loading="lazy" src="https://player.cloudinary.com/embed/?cloud_name=dlztimgay&amp;public_id=CAT-test_2_vwt8yr"></iframe>
-          
-          <div class="thumb-empty">Click vào ảnh<br>để upload thumbnail</div>
+      <button class="p-card video-card" type="button" data-video-category="motion" data-video-src="https://player.cloudinary.com/embed/?cloud_name=dlztimgay&amp;public_id=8.7-DHA-AU_ver-SEAN_pzka77" data-video-title="DHA AU Motion" data-block-name="DHA AU Motion">
+        <div class="thumb">
+          <img alt="DHA AU Motion preview" loading="lazy" src="https://res.cloudinary.com/dlztimgay/video/upload/w_900,q_auto,f_jpg/8.7-DHA-AU_ver-SEAN_pzka77.jpg" onerror="this.style.display='none'">
           <span class="tag">Cloudinary · Video</span>
           <span class="play">▶</span>
         </div>
         <div class="body">
-          <div><h4>AI Video</h4><p>Preview từ Cloudinary</p></div>
+          <div><h4>DHA AU Motion</h4><p>Xem preview trên website</p></div>
           <span class="arr">→</span>
         </div>
-      </a>
+      </button>
 
-      <a class="p-card" href="https://player.cloudinary.com/embed/?cloud_name=dlztimgay&amp;public_id=27.12-KB198-60_ph%C3%BAt_v%E1%BB%9Bi_c%C3%B4ng_ngh%E1%BB%87_ELIFT-FIBER-L%E1%BB%87-S%C6%A1n_jfso4f" target="_blank" rel="noreferrer" data-block-name="Ads Video">
-        <div class="thumb"><iframe allow="autoplay; fullscreen; encrypted-media; picture-in-picture" allowfullscreen="" frameborder="0" loading="lazy" src="https://player.cloudinary.com/embed/?cloud_name=dlztimgay&amp;public_id=27.12-KB198-60_ph%C3%BAt_v%E1%BB%9Bi_c%C3%B4ng_ngh%E1%BB%87_ELIFT-FIBER-L%E1%BB%87-S%C6%A1n_jfso4f"></iframe>
-          
-          <div class="thumb-empty">Click vào ảnh<br>để upload thumbnail</div>
+      <button class="p-card video-card" type="button" data-video-category="motion" data-video-src="https://player.cloudinary.com/embed/?cloud_name=dlztimgay&amp;public_id=8.7_Detox_range_Au_ver-Sean_pigfan" data-video-title="Detox Range Motion" data-block-name="Detox Range Motion">
+        <div class="thumb">
+          <img alt="Detox Range Motion preview" loading="lazy" src="https://res.cloudinary.com/dlztimgay/video/upload/w_900,q_auto,f_jpg/8.7_Detox_range_Au_ver-Sean_pigfan.jpg" onerror="this.style.display='none'">
           <span class="tag">Cloudinary · Video</span>
           <span class="play">▶</span>
         </div>
         <div class="body">
-          <div><h4>Ads Video</h4><p>Preview từ Cloudinary</p></div>
+          <div><h4>Detox Range Motion</h4><p>Xem preview trên website</p></div>
           <span class="arr">→</span>
         </div>
-      </a>
-       <a class="p-card" href="https://player.cloudinary.com/embed/?cloud_name=dlztimgay&amp;public_id=28.5-KB_1.6-Evie-Sean_en_edljqo" target="_blank" rel="noreferrer" data-block-name="Animation">
-        <div class="thumb"><iframe allow="autoplay; fullscreen; encrypted-media; picture-in-picture" allowfullscreen="" frameborder="0" loading="lazy" src="https://player.cloudinary.com/embed/?cloud_name=dlztimgay&amp;public_id=28.5-KB_1.6-Evie-Sean_en_edljqo"></iframe>
-          
-          <div class="thumb-empty">Click vào ảnh<br>để upload thumbnail</div>
+      </button>
+
+      <button class="p-card video-card" type="button" data-video-category="motion" data-video-src="https://player.cloudinary.com/embed/?cloud_name=dlztimgay&amp;public_id=16.7-Branding-AU-VI-Sean_kptmc8" data-video-title="Branding AU VI" data-block-name="Branding AU VI">
+        <div class="thumb">
+          <img alt="Branding AU VI preview" loading="lazy" src="https://res.cloudinary.com/dlztimgay/video/upload/w_900,q_auto,f_jpg/16.7-Branding-AU-VI-Sean_kptmc8.jpg" onerror="this.style.display='none'">
           <span class="tag">Cloudinary · Video</span>
           <span class="play">▶</span>
         </div>
         <div class="body">
-          <div><h4>Animation</h4><p>Preview từ Cloudinary</p></div>
+          <div><h4>Branding AU VI</h4><p>Xem preview trên website</p></div>
           <span class="arr">→</span>
         </div>
-      </a>
-      <a class="p-card" href="https://player.cloudinary.com/embed/?cloud_name=dlztimgay&amp;public_id=19.6-DHA_2-_SEAN_-_EVIE_bh5bkj" target="_blank" rel="noreferrer" data-block-name="Short Video">
-        <div class="thumb"><iframe allow="autoplay; fullscreen; encrypted-media; picture-in-picture" allowfullscreen="" frameborder="0" loading="lazy" src="https://player.cloudinary.com/embed/?cloud_name=dlztimgay&amp;public_id=19.6-DHA_2-_SEAN_-_EVIE_bh5bkj"></iframe>
-          
-          <div class="thumb-empty">Click vào ảnh<br>để upload thumbnail</div>
+      </button>
+
+      <button class="p-card video-card" type="button" data-video-category="motion" data-video-src="https://player.cloudinary.com/embed/?cloud_name=dlztimgay&amp;public_id=14.7-D3K2_SPRAY-SEAN_ewp0ly" data-video-title="D3K2 Spray Motion" data-block-name="D3K2 Spray Motion">
+        <div class="thumb">
+          <img alt="D3K2 Spray Motion preview" loading="lazy" src="https://res.cloudinary.com/dlztimgay/video/upload/w_900,q_auto,f_jpg/14.7-D3K2_SPRAY-SEAN_ewp0ly.jpg" onerror="this.style.display='none'">
           <span class="tag">Cloudinary · Video</span>
           <span class="play">▶</span>
         </div>
         <div class="body">
-          <div><h4>Short Video</h4><p>Preview từ Cloudinary</p></div>
+          <div><h4>D3K2 Spray Motion</h4><p>Xem preview trên website</p></div>
           <span class="arr">→</span>
         </div>
-      </a>
-       <a class="p-card" href="https://player.cloudinary.com/embed/?cloud_name=dlztimgay&amp;public_id=Product_showcase_vid-Bilberry_kdixsh" target="_blank" rel="noreferrer" data-block-name="Product Showcase">
-        <div class="thumb"><iframe allow="autoplay; fullscreen; encrypted-media; picture-in-picture" allowfullscreen="" frameborder="0" loading="lazy" src="https://player.cloudinary.com/embed/?cloud_name=dlztimgay&amp;public_id=Product_showcase_vid-Bilberry_kdixsh"></iframe>
-          
-          <div class="thumb-empty">Click vào ảnh<br>để upload thumbnail</div>
-          <span class="tag">Cloudinary · Video</span>
-          <span class="play">▶</span>
-        </div>
-        <div class="body">
-          <div><h4>Product Showcase</h4><p>Preview từ Cloudinary</p></div>
-          <span class="arr">→</span>
-        </div>
-      </a>
-      <a class="p-card" href="https://drive.google.com/file/d/1ExoBPFUP4VziJtgQU2BHig1pAqRibQqz/preview" target="_blank" rel="noreferrer" data-block-name="Collage Animation">
-        <div class="thumb"><iframe allow="autoplay; fullscreen" allowfullscreen="" frameborder="0" loading="lazy" src="https://drive.google.com/file/d/1ExoBPFUP4VziJtgQU2BHig1pAqRibQqz/preview"></iframe>
-          
-          <div class="thumb-empty">Click vào ảnh<br>để upload thumbnail</div>
+      </button>
+
+      <button class="p-card video-card" type="button" data-video-category="motion" data-video-src="https://drive.google.com/file/d/1ExoBPFUP4VziJtgQU2BHig1pAqRibQqz/preview" data-video-title="Collage Animation" data-block-name="Collage Animation">
+        <div class="thumb">
+          <div class="thumb-empty" style="display:grid">Drive preview<br>Click để xem video</div>
           <span class="tag">Drive · Video</span>
           <span class="play">▶</span>
         </div>
         <div class="body">
-          <div><h4>Collage Animation</h4><p>Preview từ Google Drive</p></div>
+          <div><h4>Collage Animation</h4><p>Xem preview trên website</p></div>
           <span class="arr">→</span>
         </div>
-      </a>
+      </button>
+
+      <button class="p-card video-card" type="button" data-video-category="ai" data-video-src="https://player.cloudinary.com/embed/?cloud_name=dlztimgay&amp;public_id=CAT-test_2_vwt8yr" data-video-title="CAT Test AI" data-block-name="CAT Test AI">
+        <div class="thumb">
+          <img alt="CAT Test AI preview" loading="lazy" src="https://res.cloudinary.com/dlztimgay/video/upload/w_900,q_auto,f_jpg/CAT-test_2_vwt8yr.jpg" onerror="this.style.display='none'">
+          <span class="tag">Cloudinary · Video</span>
+          <span class="play">▶</span>
+        </div>
+        <div class="body">
+          <div><h4>CAT Test AI</h4><p>Xem preview trên website</p></div>
+          <span class="arr">→</span>
+        </div>
+      </button>
+
+      <button class="p-card video-card" type="button" data-video-category="ai" data-video-src="https://player.cloudinary.com/embed/?cloud_name=dlztimgay&amp;public_id=case-019-final-20260211-new_siskiq" data-video-title="Case 019 AI" data-block-name="Case 019 AI">
+        <div class="thumb">
+          <img alt="Case 019 AI preview" loading="lazy" src="https://res.cloudinary.com/dlztimgay/video/upload/w_900,q_auto,f_jpg/case-019-final-20260211-new_siskiq.jpg" onerror="this.style.display='none'">
+          <span class="tag">Cloudinary · Video</span>
+          <span class="play">▶</span>
+        </div>
+        <div class="body">
+          <div><h4>Case 019 AI</h4><p>Xem preview trên website</p></div>
+          <span class="arr">→</span>
+        </div>
+      </button>
+
+      <button class="p-card video-card" type="button" data-video-category="ai" data-video-src="https://player.cloudinary.com/embed/?cloud_name=dlztimgay&amp;public_id=VFRESH-commercial-test1_svaakg" data-video-title="VFRESH Commercial AI" data-block-name="VFRESH Commercial AI">
+        <div class="thumb">
+          <img alt="VFRESH Commercial AI preview" loading="lazy" src="https://res.cloudinary.com/dlztimgay/video/upload/w_900,q_auto,f_jpg/VFRESH-commercial-test1_svaakg.jpg" onerror="this.style.display='none'">
+          <span class="tag">Cloudinary · Video</span>
+          <span class="play">▶</span>
+        </div>
+        <div class="body">
+          <div><h4>VFRESH Commercial AI</h4><p>Xem preview trên website</p></div>
+          <span class="arr">→</span>
+        </div>
+      </button>
+
+      <button class="p-card video-card" type="button" data-video-category="ads" data-video-src="https://player.cloudinary.com/embed/?cloud_name=dlztimgay&amp;public_id=27.12-KB198-60_ph%C3%BAt_v%E1%BB%9Bi_c%C3%B4ng_ngh%E1%BB%87_ELIFT-FIBER-L%E1%BB%87-S%C6%A1n_jfso4f" data-video-title="ELIFT Fiber Ads" data-block-name="ELIFT Fiber Ads">
+        <div class="thumb">
+          <img alt="ELIFT Fiber Ads preview" loading="lazy" src="https://res.cloudinary.com/dlztimgay/video/upload/w_900,q_auto,f_jpg/27.12-KB198-60_ph%C3%BAt_v%E1%BB%9Bi_c%C3%B4ng_ngh%E1%BB%87_ELIFT-FIBER-L%E1%BB%87-S%C6%A1n_jfso4f.jpg" onerror="this.style.display='none'">
+          <span class="tag">Cloudinary · Video</span>
+          <span class="play">▶</span>
+        </div>
+        <div class="body">
+          <div><h4>ELIFT Fiber Ads</h4><p>Xem preview trên website</p></div>
+          <span class="arr">→</span>
+        </div>
+      </button>
+
+      <button class="p-card video-card" type="button" data-video-category="ads" data-video-src="https://player.cloudinary.com/embed/?cloud_name=dlztimgay&amp;public_id=7.4-KB26-KHAI_CUNG_%C4%90%E1%BA%A0I_C%C3%81T-TH%E1%BA%A2O_S%C6%A0N_mam45i" data-video-title="Khai Cung Đại Cát" data-block-name="Khai Cung Dai Cat">
+        <div class="thumb">
+          <img alt="Khai Cung Đại Cát preview" loading="lazy" src="https://res.cloudinary.com/dlztimgay/video/upload/w_900,q_auto,f_jpg/7.4-KB26-KHAI_CUNG_%C4%90%E1%BA%A0I_C%C3%81T-TH%E1%BA%A2O_S%C6%A0N_mam45i.jpg" onerror="this.style.display='none'">
+          <span class="tag">Cloudinary · Video</span>
+          <span class="play">▶</span>
+        </div>
+        <div class="body">
+          <div><h4>Khai Cung Đại Cát</h4><p>Xem preview trên website</p></div>
+          <span class="arr">→</span>
+        </div>
+      </button>
+
+      <button class="p-card video-card" type="button" data-video-category="ads" data-video-src="https://player.cloudinary.com/embed/?cloud_name=dlztimgay&amp;public_id=17.4-KB_91-H%E1%BA%A0_G%C3%92_M%C3%81_21-L%E1%BB%86_S%C6%A0N_yxjzyq" data-video-title="Hạ Gò Má" data-block-name="Ha Go Ma">
+        <div class="thumb">
+          <img alt="Hạ Gò Má preview" loading="lazy" src="https://res.cloudinary.com/dlztimgay/video/upload/w_900,q_auto,f_jpg/17.4-KB_91-H%E1%BA%A0_G%C3%92_M%C3%81_21-L%E1%BB%86_S%C6%A0N_yxjzyq.jpg" onerror="this.style.display='none'">
+          <span class="tag">Cloudinary · Video</span>
+          <span class="play">▶</span>
+        </div>
+        <div class="body">
+          <div><h4>Hạ Gò Má</h4><p>Xem preview trên website</p></div>
+          <span class="arr">→</span>
+        </div>
+      </button>
+
+      <button class="p-card video-card" type="button" data-video-category="ads" data-video-src="https://player.cloudinary.com/embed/?cloud_name=dlztimgay&amp;public_id=14.5-KB_93-TR%E1%BA%AENG_15-L%E1%BB%86_S%C6%A0N_lsvt8t" data-video-title="Trắng 15" data-block-name="Trang 15">
+        <div class="thumb">
+          <img alt="Trắng 15 preview" loading="lazy" src="https://res.cloudinary.com/dlztimgay/video/upload/w_900,q_auto,f_jpg/14.5-KB_93-TR%E1%BA%AENG_15-L%E1%BB%86_S%C6%A0N_lsvt8t.jpg" onerror="this.style.display='none'">
+          <span class="tag">Cloudinary · Video</span>
+          <span class="play">▶</span>
+        </div>
+        <div class="body">
+          <div><h4>Trắng 15</h4><p>Xem preview trên website</p></div>
+          <span class="arr">→</span>
+        </div>
+      </button>
+
+       <button class="p-card video-card" type="button" data-video-category="animation" data-video-src="https://player.cloudinary.com/embed/?cloud_name=dlztimgay&amp;public_id=28.5-KB_1.6-Evie-Sean_en_edljqo" data-video-title="Evie Sean Animation" data-block-name="Evie Sean Animation">
+        <div class="thumb">
+          <img alt="Evie Sean Animation preview" loading="lazy" src="https://res.cloudinary.com/dlztimgay/video/upload/w_900,q_auto,f_jpg/28.5-KB_1.6-Evie-Sean_en_edljqo.jpg" onerror="this.style.display='none'">
+          <span class="tag">Cloudinary · Video</span>
+          <span class="play">▶</span>
+        </div>
+        <div class="body">
+          <div><h4>Evie Sean Animation</h4><p>Xem preview trên website</p></div>
+          <span class="arr">→</span>
+        </div>
+      </button>
+
+      <button class="p-card video-card" type="button" data-video-category="animation" data-video-src="https://player.cloudinary.com/embed/?cloud_name=dlztimgay&amp;public_id=13.7-Brain_day-DHA-Sean_lsnqbm" data-video-title="Brain Day Animation" data-block-name="Brain Day Animation">
+        <div class="thumb">
+          <img alt="Brain Day Animation preview" loading="lazy" src="https://res.cloudinary.com/dlztimgay/video/upload/w_900,q_auto,f_jpg/13.7-Brain_day-DHA-Sean_lsnqbm.jpg" onerror="this.style.display='none'">
+          <span class="tag">Cloudinary · Video</span>
+          <span class="play">▶</span>
+        </div>
+        <div class="body">
+          <div><h4>Brain Day Animation</h4><p>Xem preview trên website</p></div>
+          <span class="arr">→</span>
+        </div>
+      </button>
+
+      <button class="p-card video-card" type="button" data-video-category="short" data-video-src="https://player.cloudinary.com/embed/?cloud_name=dlztimgay&amp;public_id=19.6-DHA_2-_SEAN_-_EVIE_bh5bkj" data-video-title="DHA Evie Short" data-block-name="DHA Evie Short">
+        <div class="thumb">
+          <img alt="DHA Evie Short preview" loading="lazy" src="https://res.cloudinary.com/dlztimgay/video/upload/w_900,q_auto,f_jpg/19.6-DHA_2-_SEAN_-_EVIE_bh5bkj.jpg" onerror="this.style.display='none'">
+          <span class="tag">Cloudinary · Video</span>
+          <span class="play">▶</span>
+        </div>
+        <div class="body">
+          <div><h4>DHA Evie Short</h4><p>Xem preview trên website</p></div>
+          <span class="arr">→</span>
+        </div>
+      </button>
+
+      <button class="p-card video-card" type="button" data-video-category="short" data-video-src="https://player.cloudinary.com/embed/?cloud_name=dlztimgay&amp;public_id=17.7-OFD-SEAN_qmpqjv" data-video-title="OFD Short Video" data-block-name="OFD Short Video">
+        <div class="thumb">
+          <img alt="OFD Short Video preview" loading="lazy" src="https://res.cloudinary.com/dlztimgay/video/upload/w_900,q_auto,f_jpg/17.7-OFD-SEAN_qmpqjv.jpg" onerror="this.style.display='none'">
+          <span class="tag">Cloudinary · Video</span>
+          <span class="play">▶</span>
+        </div>
+        <div class="body">
+          <div><h4>OFD Short Video</h4><p>Xem preview trên website</p></div>
+          <span class="arr">→</span>
+        </div>
+      </button>
+
+      <button class="p-card video-card" type="button" data-video-category="short" data-video-src="https://player.cloudinary.com/embed/?cloud_name=dlztimgay&amp;public_id=10.7-Canxi-Sean_yhraws" data-video-title="Canxi Short Video" data-block-name="Canxi Short Video">
+        <div class="thumb">
+          <img alt="Canxi Short Video preview" loading="lazy" src="https://res.cloudinary.com/dlztimgay/video/upload/w_900,q_auto,f_jpg/10.7-Canxi-Sean_yhraws.jpg" onerror="this.style.display='none'">
+          <span class="tag">Cloudinary · Video</span>
+          <span class="play">▶</span>
+        </div>
+        <div class="body">
+          <div><h4>Canxi Short Video</h4><p>Xem preview trên website</p></div>
+          <span class="arr">→</span>
+        </div>
+      </button>
+
+      <button class="p-card video-card" type="button" data-video-category="short" data-video-src="https://player.cloudinary.com/embed/?cloud_name=dlztimgay&amp;public_id=10.7-DHA-Sean_brty0f" data-video-title="DHA Short Video" data-block-name="DHA Short Video">
+        <div class="thumb">
+          <img alt="DHA Short Video preview" loading="lazy" src="https://res.cloudinary.com/dlztimgay/video/upload/w_900,q_auto,f_jpg/10.7-DHA-Sean_brty0f.jpg" onerror="this.style.display='none'">
+          <span class="tag">Cloudinary · Video</span>
+          <span class="play">▶</span>
+        </div>
+        <div class="body">
+          <div><h4>DHA Short Video</h4><p>Xem preview trên website</p></div>
+          <span class="arr">→</span>
+        </div>
+      </button>
+       <button class="p-card video-card" type="button" data-video-category="product" data-video-src="https://player.cloudinary.com/embed/?cloud_name=dlztimgay&amp;public_id=Product_showcase_vid-Bilberry_kdixsh" data-video-title="Bilberry Showcase" data-block-name="Bilberry Showcase">
+        <div class="thumb">
+          <img alt="Bilberry Showcase preview" loading="lazy" src="https://res.cloudinary.com/dlztimgay/video/upload/w_900,q_auto,f_jpg/Product_showcase_vid-Bilberry_kdixsh.jpg" onerror="this.style.display='none'">
+          <span class="tag">Cloudinary · Video</span>
+          <span class="play">▶</span>
+        </div>
+        <div class="body">
+          <div><h4>Bilberry Showcase</h4><p>Xem preview trên website</p></div>
+          <span class="arr">→</span>
+        </div>
+      </button>
+      <button class="p-card video-card" type="button" data-video-category="product" data-video-src="https://player.cloudinary.com/embed/?cloud_name=dlztimgay&amp;public_id=Product_showcase_vid-Prostate_Care_esopia" data-video-title="Prostate Care Showcase" data-block-name="Prostate Care Showcase">
+        <div class="thumb">
+          <img alt="Prostate Care Showcase preview" loading="lazy" src="https://res.cloudinary.com/dlztimgay/video/upload/w_900,q_auto,f_jpg/Product_showcase_vid-Prostate_Care_esopia.jpg" onerror="this.style.display='none'">
+          <span class="tag">Cloudinary · Video</span>
+          <span class="play">▶</span>
+        </div>
+        <div class="body">
+          <div><h4>Prostate Care Showcase</h4><p>Xem preview trên website</p></div>
+          <span class="arr">→</span>
+        </div>
+      </button>
     </div>
 
       <div class="rail-progress" aria-hidden="true">
@@ -1014,8 +1210,20 @@ html.__ed-mode .p-card .thumb img[src=""]+.thumb-empty{display:grid}
     </div>
   </div>
 
+  <div class="video-modal" id="video-modal" aria-hidden="true">
+    <div class="video-modal-box" role="dialog" aria-modal="true" aria-labelledby="video-modal-title">
+      <div class="video-modal-head">
+        <p class="video-modal-title" id="video-modal-title">Video preview</p>
+        <button class="video-modal-close" type="button" aria-label="Đóng video">×</button>
+      </div>
+      <div class="video-modal-frame" id="video-modal-frame"></div>
+    </div>
+  </div>
+
   <script>
     (() => {
+      const updateRailFns = [];
+
       document.querySelectorAll('#projects [data-project-rail]').forEach((rail) => {
         const bar = rail.nextElementSibling?.querySelector('[data-project-rail-bar]');
         if (!bar) return;
@@ -1037,7 +1245,64 @@ html.__ed-mode .p-card .thumb img[src=""]+.thumb-empty{display:grid}
 
         rail.addEventListener('scroll', updateProgress, { passive: true });
         window.addEventListener('resize', updateProgress);
+        updateRailFns.push(updateProgress);
         requestAnimationFrame(updateProgress);
+      });
+
+      const videoRail = document.getElementById('projects-video-rail');
+      const filterBtns = document.querySelectorAll('#projects [data-video-filter]');
+      const videoCards = document.querySelectorAll('#projects .video-card[data-video-category]');
+      const modal = document.getElementById('video-modal');
+      const modalTitle = document.getElementById('video-modal-title');
+      const modalFrame = document.getElementById('video-modal-frame');
+      const modalClose = modal?.querySelector('.video-modal-close');
+
+      const refreshRails = () => {
+        requestAnimationFrame(() => updateRailFns.forEach((fn) => fn()));
+      };
+
+      filterBtns.forEach((btn) => {
+        btn.addEventListener('click', () => {
+          const filter = btn.dataset.videoFilter || 'all';
+          filterBtns.forEach((item) => item.classList.toggle('is-active', item === btn));
+          videoCards.forEach((card) => {
+            const isVisible = filter === 'all' || card.dataset.videoCategory === filter;
+            card.hidden = !isVisible;
+          });
+          if (videoRail) videoRail.scrollLeft = 0;
+          refreshRails();
+        });
+      });
+
+      const closeVideo = () => {
+        if (!modal || !modalFrame) return;
+        modal.classList.remove('is-open');
+        modal.setAttribute('aria-hidden', 'true');
+        modalFrame.innerHTML = '';
+        document.body.classList.remove('video-open');
+      };
+
+      const openVideo = (card) => {
+        if (!modal || !modalFrame || !modalTitle) return;
+        const src = card.dataset.videoSrc;
+        if (!src) return;
+        modalTitle.textContent = card.dataset.videoTitle || 'Video preview';
+        modalFrame.innerHTML = `<iframe src="${src}" allow="autoplay; fullscreen; encrypted-media; picture-in-picture" allowfullscreen loading="lazy"></iframe>`;
+        modal.classList.add('is-open');
+        modal.setAttribute('aria-hidden', 'false');
+        document.body.classList.add('video-open');
+      };
+
+      videoCards.forEach((card) => {
+        card.addEventListener('click', () => openVideo(card));
+      });
+
+      modalClose?.addEventListener('click', closeVideo);
+      modal?.addEventListener('click', (event) => {
+        if (event.target === modal) closeVideo();
+      });
+      window.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape') closeVideo();
       });
     })();
   </script>
